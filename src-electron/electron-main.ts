@@ -8,9 +8,10 @@ const platform = process.platform || os.platform()
 let mainWindow: BrowserWindow | undefined
 
 function createWindow () {
+
   /**
    * Initial window options
-   */
+  */
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
     width: 1000,
@@ -23,7 +24,15 @@ function createWindow () {
     }
   })
 
+  try {
+    require('../src-backend/app')
+  } catch (error) {
+    console.error('Erro ao iniciar o servidor:', error)
+  }
+
   mainWindow.loadURL(process.env.APP_URL)
+
+  console.log(process.env.APP_URL)
 
   if (process.env.DEBUGGING) {
     // if on DEV or Production with debug enabled
@@ -38,6 +47,7 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = undefined
   })
+
 }
 
 app.whenReady().then(createWindow)

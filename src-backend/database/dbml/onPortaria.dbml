@@ -1,0 +1,123 @@
+Project OnPortaria {
+  database_type: 'PostgreSQL'
+  Note: 'Estrutura do banco de dados para usar no Sequelize'
+  Note: 'Todas as tabelas possuem essas opções:
+  {
+    freezeTableName: true,
+    timestamps: false
+  }'
+}
+
+Table tipo_usuario {
+  id integer [pk, increment, not null]
+  role string [unique, not null]
+  data_criacao date [not null]
+  data_edicao date
+}
+
+Table condominio {
+  id integer [pk, increment, not null]
+  nome string [not null]
+  contato_condominio string [not null]
+  endereco string [not null]
+  numero integer [not null]
+  complemeto string
+  bairro string [not null]
+  cidade string [not null]
+  estado string [not null]
+  pais string [not null]
+  tipo string [not null, default: 'Residencial']
+  apartamentos integer
+  blocos integer
+  sindico string
+  contato_sindico string
+  administradora string
+  contato_administradora string
+  seguranca string
+  contato_seguranca string
+  observacao string (5000)
+  data_criacao date [not null]
+  data_edicao date
+}
+
+Table usuario  {
+  id integer [pk, increment, not null]
+  id_condominio integer [ref: > condominio.id]
+  id_tipo_usuario integer [default: 1, ref: > tipo_usuario.id]
+  nome string [not null]
+  email string [unique, not null]
+  login string [unique, not null]
+  senha string(500) [not null]
+  telefone string [not null]
+  endereco string [not null]
+  numero integer [not null]
+  complemeto string
+  bairro string [not null]
+  cidade string [not null]
+  estado string [not null]
+  pais string [not null]
+  funcao string [not null]
+  apartamento string
+  bloco string
+  garagem boolean [default: false]
+  vaga string
+  observacao string(5000)
+  data_criacao date [not null]
+  data_edicao date
+}
+
+Table visitante {
+  id integer [pk, increment, not null]
+  id_condominio integer [not null, ref: > condominio.id]
+  id_usuario integer [not null, ref: > usuario.id]
+  nome string [not null]
+  documento string [not null]
+  contato string [not null]
+  apartamento integer
+  bloco integer
+  garagem boolean [default: false]
+  vaga string
+  data_entrada date [not null]
+  data_saida date
+  observacao string(5000)
+  data_criacao date [not null]
+  data_edicao date
+}
+
+Table prestador_servico {
+  id integer [pk, increment, not null]
+  id_condominio integer [not null, ref: > condominio.id]
+  id_usuario integer [not null, ref: > usuario.id]
+  nome string [not null]
+  documento string [not null]
+  apartamento integer [not null]
+  bloco integer [not null]
+  garagem boolean [default: false]
+  vaga string
+  servico string(5000) [not null]
+  empresa string [not null]
+  contato string [not null]
+  endereco string [not null]
+  numero integer [not null]
+  complemeto string
+  bairro string [not null]
+  cidade string [not null]
+  estado string [not null]
+  pais string [not null]
+  data_entrada date [not null]
+  data_saida date
+  observacao string(5000)
+  data_criacao date [not null]
+  data_edicao date
+}
+
+Table login  {
+  id integer [pk, increment, not null]
+  id_condominio integer [ref: > condominio.id]
+  id_usuario integer [not null, ref: > usuario.id]
+  id_tipo_usuario integer [not null, ref: > tipo_usuario.id]
+  login string [not null]
+  token string(5000) [not null]
+  refresh_token string(5000) [not null]
+  data_criacao date [not null]
+}
