@@ -1,0 +1,67 @@
+{
+  "name": "off-port",
+  "version": "0.0.1",
+  "description": "Sistema de controle de acesso e gestão de portaria offline",
+  "productName": "offPort",
+  "author": "JeanOmeg <jeanomeg3@gmail.com>",
+  "private": true,
+  "license": "LGPL-3.0-only",
+  "scripts": {
+    "db:migrate": "yarn sequelize db:migrate",
+    "db:seed": "yarn sequelize db:seed:all",
+    "db:undo": "yarn sequelize db:migrate:undo",
+    "db:undo:all": "yarn sequelize db:migrate:undo:all",
+    "db:mc": "yarn sequelize migration:create --name ",
+    "db:sc": "yarn sequelize seed:create --name ",
+    "dev": "quasar dev -m electron",
+    "build": "yarn && yarn sequelize db:migrate && yarn sequelize db:seed:all && yarn quasar build -m electron -P always"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.4",
+    "axios": "^1.2.1",
+    "bcrypt": "^5.1.1",
+    "core-js": "^3.6.5",
+    "dotenv": "^16.3.1",
+    "quasar": "^2.6.0",
+    "sequelize": "^6.35.0",
+    "sequelize-cli": "^6.6.2",
+    "sequelize-typescript": "^2.1.5",
+    "sqlite3": "^5.1.6",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0"
+  },
+  "devDependencies": {
+    "@quasar/app-webpack": "^3.0.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^12.20.21",
+    "@types/sequelize": "^4.28.18",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "electron": "^27.1.0",
+    "electron-packager": "^17.1.1",
+    "eslint": "^8.53.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.18.1",
+    "typescript": "^5.2.2"
+  },
+  "browserslist": [
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 12.22.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}
