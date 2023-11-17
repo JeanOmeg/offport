@@ -48,7 +48,7 @@ module.exports = {
         allowNull: false
       },
       data_criacao: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
         allowNull: false
       }
     })

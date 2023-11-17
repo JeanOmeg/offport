@@ -1,20 +1,20 @@
 import { IVisitante } from '../../interfaces/visitante/visitante-interface'
 import { db } from '../../util/db'
-import { DataTypes, Sequelize } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
 const tabela = 'visitante'
 
 export const VisitanteModel = db.define<any, IVisitante>(
   tabela, {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
       allowNull: false,
-      defaultValue: Sequelize.literal('uuid_generate_v4()')
+      autoIncrement: true
     },
     id_condominio: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'condominio',
@@ -22,7 +22,7 @@ export const VisitanteModel = db.define<any, IVisitante>(
       }
     },
     id_usuario: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'usuario',
@@ -30,15 +30,15 @@ export const VisitanteModel = db.define<any, IVisitante>(
       }
     },
     nome: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     documento: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     contato: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     apartamento: {
@@ -52,24 +52,24 @@ export const VisitanteModel = db.define<any, IVisitante>(
       defaultValue: false
     },
     vaga: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     data_entrada: {
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     data_saida: {
-      type: DataTypes.DATE
+      type: DataTypes.TEXT
     },
     observacao: {
-      type: DataTypes.STRING(5000)
+      type: DataTypes.TEXT
     },
     data_criacao: {
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     data_edicao: {
-      type: DataTypes.DATE
+      type: DataTypes.TEXT
     }
   },
   {

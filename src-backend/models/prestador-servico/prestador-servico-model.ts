@@ -1,20 +1,20 @@
 import { IPrestadorServico } from '../../interfaces/prestador-servico/prestador-servico-interface'
 import { db } from '../../util/db'
-import { DataTypes, Sequelize } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
 const tabela = 'prestador_servico'
 
 export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
   tabela, {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
       allowNull: false,
-      defaultValue: Sequelize.literal('uuid_generate_v4()')
+      autoIncrement: true
     },
     id_condominio: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'condominio',
@@ -22,7 +22,7 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       }
     },
     id_usuario: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'usuario',
@@ -30,11 +30,11 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       }
     },
     nome: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     documento: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     apartamento: {
@@ -42,7 +42,7 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       allowNull: false
     },
     bloco: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     garagem: {
@@ -50,10 +50,10 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       defaultValue: false
     },
     vaga: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     servico: {
-      type: DataTypes.STRING(5000),
+      type: DataTypes.TEXT,
       allowNull: false
     },
     empresa: {
@@ -61,10 +61,10 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       allowNull: false
     },
     contato: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     endereco: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     numero: {
@@ -72,41 +72,41 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       allowNull: false
     },
     complemento: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     bairro: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     cidade: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     estado: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     pais: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     data_entrada: {
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     data_saida: {
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     observacao: {
-      type: DataTypes.STRING(5000)
+      type: DataTypes.TEXT
     },
     data_criacao: {
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     data_edicao: {
-      type: DataTypes.DATE
+      type: DataTypes.TEXT
     }
   },
   {

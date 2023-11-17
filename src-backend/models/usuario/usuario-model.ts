@@ -1,27 +1,27 @@
 import { IUsuario } from '../../interfaces/usuario/usuario-interface'
 import { db } from '../../util/db'
-import { DataTypes, Sequelize } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
 const tabela = 'usuario'
 
 export const UsuarioModel = db.define<any, IUsuario>(
   tabela, {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
       allowNull: false,
-      defaultValue: Sequelize.literal('uuid_generate_v4()')
+      autoIncrement: true
     },
     id_condominio: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       references: {
         model: 'condominio',
         key: 'id'
       }
     },
     id_tipo_usuario: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'tipo_usuario',
@@ -29,29 +29,29 @@ export const UsuarioModel = db.define<any, IUsuario>(
       }
     },
     nome: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       unique: true
     },
     login: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       unique: true
     },
     senha: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.TEXT,
       allowNull: false
     },
     telefone: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     endereco: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     numero: {
@@ -59,26 +59,26 @@ export const UsuarioModel = db.define<any, IUsuario>(
       allowNull: false
     },
     complemento: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     bairro: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     cidade: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     estado: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     pais: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     funcao: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     apartamento: {
       type: DataTypes.INTEGER
@@ -91,17 +91,17 @@ export const UsuarioModel = db.define<any, IUsuario>(
       defaultValue: false
     },
     vaga: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     observacao: {
-      type: DataTypes.STRING(5000)
+      type: DataTypes.TEXT
     },
     data_criacao: {
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     data_edicao: {
-      type: DataTypes.DATE
+      type: DataTypes.TEXT
     }
   },
   {

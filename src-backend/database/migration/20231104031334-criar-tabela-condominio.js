@@ -80,11 +80,11 @@ module.exports = {
         type: Sequelize.TEXT
       },
       data_criacao: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       data_edicao: {
-        type: Sequelize.DATE
+        type: Sequelize.TEXT
       }
     })
   },

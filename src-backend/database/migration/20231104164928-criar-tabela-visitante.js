@@ -54,21 +54,21 @@ module.exports = {
         type: Sequelize.TEXT
       },
       data_entrada: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       data_saida: {
-        type: Sequelize.DATE
+        type: Sequelize.TEXT
       },
       observacao: {
         type: Sequelize.TEXT
       },
       data_criacao: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       data_edicao: {
-        type: Sequelize.DATE
+        type: Sequelize.TEXT
       }
     })
   },

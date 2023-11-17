@@ -90,22 +90,22 @@ module.exports = {
         allowNull: false
       },
       data_entrada: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       data_saida: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       observacao: {
         type: Sequelize.TEXT
       },
       data_criacao: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       data_edicao: {
-        type: Sequelize.DATE
+        type: Sequelize.TEXT
       }
     })
   },
