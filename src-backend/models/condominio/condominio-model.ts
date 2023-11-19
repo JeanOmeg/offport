@@ -25,13 +25,6 @@ export const CondominioModel = db.define<any, ICondominio>(
       type: DataTypes.TEXT,
       allowNull: false
     },
-    numero: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    complemento: {
-      type: DataTypes.TEXT
-    },
     bairro: {
       type: DataTypes.TEXT,
       allowNull: false
@@ -40,23 +33,21 @@ export const CondominioModel = db.define<any, ICondominio>(
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    estado: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    pais: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
     tipo: {
       type: DataTypes.TEXT,
       allowNull: false,
       defaultValue: 'Residencial'
     },
-    apartamentos: {
+    qtd_apartamento: {
       type: DataTypes.INTEGER
     },
-    blocos: {
+    qtd_bloco: {
+      type: DataTypes.INTEGER
+    },
+    garagem: {
+      type: DataTypes.BOOLEAN
+    },
+    qtd_vaga: {
       type: DataTypes.INTEGER
     },
     sindico: {
@@ -75,6 +66,12 @@ export const CondominioModel = db.define<any, ICondominio>(
       type: DataTypes.TEXT
     },
     contato_seguranca: {
+      type: DataTypes.TEXT
+    },
+    servicos_gerais: {
+      type: DataTypes.TEXT
+    },
+    contato_servicos_gerais: {
       type: DataTypes.TEXT
     },
     observacao: {

@@ -22,9 +22,12 @@ module.exports = {
         allowNull: false
       },
       data_edicao: {
-        type: Sequelize.TEXT,
-        allowNull: true
+        type: Sequelize.TEXT
       }
+    },
+    {
+      freezeTableName: true,
+      timestamps: false
     })
   },
 

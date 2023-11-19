@@ -51,6 +51,10 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       }
+    },
+    {
+      freezeTableName: true,
+      timestamps: false
     })
   },
 

@@ -9,7 +9,7 @@ export async function criarPayloadService (usuario: IUsuario) {
     id_usuario: usuario.id,
     id_tipo_usuario: usuario.id_tipo_usuario,
     login: usuario.login,
-    data_criacao: new Date()
+    data_criacao: new Date().toLocaleString()
   }
 
   return login

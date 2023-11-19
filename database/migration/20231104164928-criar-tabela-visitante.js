@@ -70,6 +70,10 @@ module.exports = {
       data_edicao: {
         type: Sequelize.TEXT
       }
+    },
+    {
+      freezeTableName: true,
+      timestamps: false
     })
   },
 

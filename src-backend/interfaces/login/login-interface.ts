@@ -1,11 +1,11 @@
 export interface ILogin {
-  id?: string
-  id_condominio?: string
-  id_tipo_usuario?: string
-  id_usuario?: string
+  id?: number
+  id_condominio?: number
+  id_tipo_usuario?: number
+  id_usuario?: number
   login?: string
   senha?: string
   token?: string
   refresh_token?: string
-  data_criacao?: Date
+  data_criacao?: string
 }

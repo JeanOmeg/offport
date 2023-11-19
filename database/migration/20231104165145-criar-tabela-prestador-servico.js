@@ -1,5 +1,5 @@
 'use strict'
-const tabela = 'condominio'
+const tabela = 'prestador_servico'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -12,13 +12,55 @@ module.exports = {
         allowNull: false,
         autoIncrement: true
       },
+      id_condominio: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'condominio',
+          key: 'id'
+        }
+      },
+      id_usuario: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'usuario',
+          key: 'id'
+        }
+      },
       nome: {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      contato_condominio: {
+      documento: {
         type: Sequelize.TEXT,
         allowNull: false
+      },
+      apartamento: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      bloco: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      garagem: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      vaga: {
+        type: Sequelize.TEXT
+      },
+      servico: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      empresa: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      contato: {
+        type: Sequelize.TEXT
       },
       endereco: {
         type: Sequelize.TEXT,
@@ -36,7 +78,7 @@ module.exports = {
         allowNull: false
       },
       cidade: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       estado: {
@@ -47,34 +89,13 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      tipo: {
+      data_entrada: {
         type: Sequelize.TEXT,
-        allowNull: false,
-        defaultValue: 'Residencial'
+        allowNull: false
       },
-      apartamentos: {
-        type: Sequelize.INTEGER
-      },
-      blocos: {
-        type: Sequelize.INTEGER
-      },
-      sindico: {
-        type: Sequelize.TEXT
-      },
-      contato_sindico: {
-        type: Sequelize.TEXT
-      },
-      administradora: {
-        type: Sequelize.TEXT
-      },
-      contato_administradora: {
-        type: Sequelize.TEXT
-      },
-      seguranca: {
-        type: Sequelize.TEXT
-      },
-      contato_seguranca: {
-        type: Sequelize.TEXT
+      data_saida: {
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       observacao: {
         type: Sequelize.TEXT
@@ -86,6 +107,10 @@ module.exports = {
       data_edicao: {
         type: Sequelize.TEXT
       }
+    },
+    {
+      freezeTableName: true,
+      timestamps: false
     })
   },
 

@@ -1,5 +1,5 @@
 'use strict'
-const tabela = 'prestador_servico'
+const tabela = 'usuario'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -20,11 +20,11 @@ module.exports = {
           key: 'id'
         }
       },
-      id_usuario: {
+      id_tipo_usuario: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'usuario',
+          model: 'tipo_usuario',
           key: 'id'
         }
       },
@@ -32,46 +32,27 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      documento: {
+      email: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        unique: true
+      },
+      login: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        unique: true
+      },
+      senha: {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      apartamento: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      bloco: {
+      telefone: {
         type: Sequelize.TEXT,
         allowNull: false
-      },
-      garagem: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-      },
-      vaga: {
-        type: Sequelize.TEXT
-      },
-      servico: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      empresa: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      contato: {
-        type: Sequelize.TEXT
       },
       endereco: {
         type: Sequelize.TEXT,
         allowNull: false
-      },
-      numero: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      complemento: {
-        type: Sequelize.TEXT
       },
       bairro: {
         type: Sequelize.TEXT,
@@ -81,19 +62,16 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      estado: {
+      funcao: {
         type: Sequelize.TEXT,
+        allowNull: false,
+        defaultValue: 'Porteiro'
+      },
+      turno: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
-      pais: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      data_entrada: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      data_saida: {
+      empresa: {
         type: Sequelize.TEXT,
         allowNull: false
       },
@@ -107,6 +85,10 @@ module.exports = {
       data_edicao: {
         type: Sequelize.TEXT
       }
+    },
+    {
+      freezeTableName: true,
+      timestamps: false
     })
   },
 

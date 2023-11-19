@@ -2,37 +2,23 @@ import { app, BrowserWindow } from 'electron'
 import path from 'path'
 import os from 'os'
 
-// needed in case process is undefined under Linux
 const platform = process.platform || os.platform()
 
 let mainWindow: BrowserWindow | undefined
 
 function createWindow () {
-
-  /**
-   * Initial window options
-  */
   mainWindow = new BrowserWindow({
-    icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
+    icon: path.resolve(__dirname, 'icons/icon.png'),
     width: 1000,
     height: 600,
     useContentSize: true,
     webPreferences: {
       contextIsolation: true,
-      // More info: https://v2.quasar.dev/quasar-cli-webpack/developing-electron-apps/electron-preload-script
       preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD)
     }
   })
 
-  try {
-    require('../src-backend/app')
-  } catch (error) {
-    console.error('Erro ao iniciar o servidor:', error)
-  }
-
   mainWindow.loadURL(process.env.APP_URL)
-
-  console.log(process.env.APP_URL)
 
   if (process.env.DEBUGGING) {
     // if on DEV or Production with debug enabled
@@ -50,16 +36,22 @@ function createWindow () {
 
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createWindow()
+  try {
+    require('../src-backend/app_server.ts')
+  } catch (error) {
+    console.error('Erro ao iniciar o servidor:', error)
+  }
+  app.on('activate', () => {
+    if (mainWindow === undefined) {
+      createWindow()
+    }
+  })
+})
 
 app.on('window-all-closed', () => {
   if (platform !== 'darwin') {
     app.quit()
-  }
-})
-
-app.on('activate', () => {
-  if (mainWindow === undefined) {
-    createWindow()
   }
 })

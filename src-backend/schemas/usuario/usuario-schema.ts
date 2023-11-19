@@ -45,3 +45,5 @@ export class UsuarioSchema {
     })
   }
 }
+
+export const usuario_schema = new UsuarioSchema()

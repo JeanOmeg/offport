@@ -2,6 +2,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const { configure } = require('quasar/wrappers')
+const path = require('path')
+require('dotenv').config()
+
 
 module.exports = configure(function (ctx) {
   return {
@@ -19,8 +22,8 @@ module.exports = configure(function (ctx) {
     ],
 
     sourceFiles: {
-      electronMain: 'src-electron/electron-main.ts',
-      electronPreload: 'src-electron/electron-preload.ts'
+      electronMain: 'src-electron/electron-main',
+      electronPreload: 'src-electron/electron-preload'
     },
 
     extends: [
@@ -46,7 +49,6 @@ module.exports = configure(function (ctx) {
 
     devServer: {
       https: false,
-      port: 9000,
       open: true
     },
 
@@ -130,36 +132,57 @@ module.exports = configure(function (ctx) {
 
     electron: {
       bundler: 'packager',
-
       packager: {
-
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-
-        // Windows only
-        // win32metadata: { ... }
+        extraResource: './db.sqlite',
+        appId: 'offPort',
+        productName: 'offPort',
+        extends: null,
+        externals: {
+          sqlite3: 'commonjs sqlite3'
+        },
+        directories: {
+          output: 'dist'
+        },
+        files: [
+          {
+            from: path.resolve(__dirname, 'src-electron'),
+            to: 'src-electron',
+            filter: ['**/*']
+          },
+          {
+            from: path.resolve(__dirname, 'src-backend'),
+            to: 'src-backend',
+            filter: ['**/*']
+          }
+        ],
+        asar: true,
+        win: {
+          target: [
+            {
+              target: 'nsis',
+              arch: ['x64']
+            }
+          ]
+        }
       },
 
       builder: {
         // https://www.electron.build/configuration/configuration
 
         appId: 'off-port'
-      },
-
-      // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackMain (/* chain */) {
-        // do something with the Electron main process Webpack cfg
-        // extendWebpackMain also available besides this chainWebpackMain
-      },
-
-      // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackPreload (/* chain */) {
-        // do something with the Electron main process Webpack cfg
-        // extendWebpackPreload also available besides this chainWebpackPreload
       }
+    },
+
+    // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
+    chainWebpackMain (/* chain */) {
+      // do something with the Electron main process Webpack cfg
+      // extendWebpackMain also available besides this chainWebpackMain
+    },
+
+    // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
+    chainWebpackPreload (/* chain */) {
+      // do something with the Electron main process Webpack cfg
+      // extendWebpackPreload also available besides this chainWebpackPreload
     }
   }
 })

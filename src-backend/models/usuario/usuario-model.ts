@@ -15,6 +15,7 @@ export const UsuarioModel = db.define<any, IUsuario>(
     },
     id_condominio: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'condominio',
         key: 'id'
@@ -54,13 +55,6 @@ export const UsuarioModel = db.define<any, IUsuario>(
       type: DataTypes.TEXT,
       allowNull: false
     },
-    numero: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    complemento: {
-      type: DataTypes.TEXT
-    },
     bairro: {
       type: DataTypes.TEXT,
       allowNull: false
@@ -69,29 +63,18 @@ export const UsuarioModel = db.define<any, IUsuario>(
       type: DataTypes.TEXT,
       allowNull: false
     },
-    estado: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    pais: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
     funcao: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: 'Porteiro'
     },
-    apartamento: {
-      type: DataTypes.INTEGER
+    turno: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
-    bloco: {
-      type: DataTypes.INTEGER
-    },
-    garagem: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    vaga: {
-      type: DataTypes.TEXT
+    empresa: {
+      type: DataTypes.TEXT,
+      allowNull: false
     },
     observacao: {
       type: DataTypes.TEXT

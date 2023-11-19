@@ -29,3 +29,5 @@ export class LoginSchema {
     return usuario_logado
   }
 }
+
+export const login_schema = new LoginSchema()

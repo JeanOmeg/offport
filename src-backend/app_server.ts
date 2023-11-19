@@ -1,19 +1,21 @@
+// src-backend/app_server.ts
+
 import express from 'express'
 import cors from 'cors'
 require('dotenv').config()
 import routes from './route/index.routes'
 
-const app = express()
+const app_server = express()
 
-app.use(express.json())
-app.use(cors())
-app.use(routes)
+app_server.use(express.json())
+app_server.use(cors())
+app_server.use(routes)
 
 const porta = Number(process.env.PORTA) || 3000
 const url = process.env.URL
 
-app.listen(porta, () => {
+app_server.listen(porta, () => {
   console.log(`Servidor rodando em ${url}${porta}`)
 })
 
-export default app
+export default app_server

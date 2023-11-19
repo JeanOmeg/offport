@@ -1,5 +1,5 @@
 'use strict'
-const tabela = 'usuario'
+const tabela = 'morador'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -14,16 +14,9 @@ module.exports = {
       },
       id_condominio: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'condominio',
-          key: 'id'
-        }
-      },
-      id_tipo_usuario: {
-        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'tipo_usuario',
+          model: 'condominio',
           key: 'id'
         }
       },
@@ -31,63 +24,24 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      email: {
-        type: Sequelize.TEXT,
-        allowNull: false,
-        unique: true
-      },
-      login: {
-        type: Sequelize.TEXT,
-        allowNull: false,
-        unique: true
-      },
-      senha: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
       telefone: {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      endereco: {
+      email: {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      numero: {
+      apartamento: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      complemento: {
-        type: Sequelize.TEXT
-      },
-      bairro: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      cidade: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      estado: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      pais: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      funcao: {
-        type: Sequelize.TEXT
-      },
-      apartamento: {
-        type: Sequelize.INTEGER
-      },
       bloco: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       garagem: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+        type: Sequelize.BOOLEAN
       },
       vaga: {
         type: Sequelize.TEXT
@@ -102,6 +56,10 @@ module.exports = {
       data_edicao: {
         type: Sequelize.TEXT
       }
+    },
+    {
+      freezeTableName: true,
+      timestamps: false
     })
   },
 

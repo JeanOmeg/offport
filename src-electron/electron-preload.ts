@@ -19,11 +19,19 @@
  * If accessing Node functionality (like importing @electron/remote) then in your
  * electron-main.ts you will need to set the following when you instantiate BrowserWindow:
  *
- * mainWindow = new BrowserWindow({
- *   // ...
- *   webPreferences: {
- *     // ...
- *     sandbox: false // <-- to be able to import @electron/remote in preload script
- *   }
- * }
- */
+*/
+// import { BrowserWindow, app } from 'electron'
+
+// const server = require('../src-backend/app_server.ts')
+
+// const background = new BrowserWindow({
+//   show: false,
+//   webPreferences: {
+//     sandbox: false
+//   }
+// })
+
+// app.on('ready', () => {
+//   server()
+//   background.loadURL('http://localhost:6000')
+// })
