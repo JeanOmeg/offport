@@ -22,31 +22,31 @@ function createWindow () {
 
   mainWindow.loadURL(process.env.APP_URL)
 
-  if (process.env.DEBUGGING) {
-    // if on DEV or Production with debug enabled
-    mainWindow.webContents.openDevTools()
-  } else {
-    // we're on production; no access to devtools pls
-    mainWindow.webContents.on('devtools-opened', () => {
-      mainWindow?.webContents.closeDevTools()
-    })
-  }
+  // if (process.env.DEBUGGING) {
+  //   // if on DEV or Production with debug enabled
+  // } else {
+  //   // we're on production; no access to devtools pls
+  //   mainWindow.webContents.on('devtools-opened', () => {
+  //     mainWindow?.webContents.closeDevTools()
+  //   })
+  // }
 
   mainWindow.maximize()
+  mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', () => {
     mainWindow = undefined
   })
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   createWindow()
   try {
-    require('../src-backend/app_server.ts')
+    await require('../src-backend/app_server.ts')
   } catch (error) {
     console.error('Erro ao iniciar o servidor:', error)
   }
-  app.on('activate', () => {
+  app.on('activate', async () => {
     if (mainWindow === undefined) {
       createWindow()
     }
@@ -58,3 +58,4 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+

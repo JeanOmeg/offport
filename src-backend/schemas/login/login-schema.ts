@@ -1,3 +1,4 @@
+import { IUsuario } from 'app/src-backend/interfaces/usuario/usuario-interface'
 import { ILogin } from '../../interfaces/login/login-interface'
 import { LoginModel } from '../../models/login/login-model'
 
@@ -6,24 +7,15 @@ export class LoginSchema {
     return LoginModel
   }
 
-  async logarUsuario (login: ILogin): Promise<ILogin> {
-    await LoginModel.create({
+  async logarUsuario (login: IUsuario): Promise<ILogin> {
+    return await LoginModel.create({
       id_condominio: login.id_condominio,
       id_tipo_usuario: login.id_tipo_usuario,
-      login: login.login,
-      data_criacao: login.data_criacao
+      id_usuario: login.id,
+      login: login.login
+    }, {
+      raw: true
     })
-
-    const usuario_logado: ILogin = {
-      id_condominio: login.id_condominio,
-      id_usuario: login.id_usuario,
-      login: login.login,
-      id_tipo_usuario: login.id_tipo_usuario,
-      id: 0,
-      data_criacao: ''
-    }
-
-    return usuario_logado
   }
 }
 

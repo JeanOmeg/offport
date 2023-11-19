@@ -7,7 +7,7 @@ export class TipoUsuarioSchema {
   }
 
   async listarTodos (): Promise<ITipoUsuario[]> {
-    const lista: ITipoUsuario[] = await TipoUsuarioModel.findAll()
+    const lista: ITipoUsuario[] = await TipoUsuarioModel.findAll({ raw: true })
 
     return lista
   }
