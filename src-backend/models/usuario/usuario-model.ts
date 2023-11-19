@@ -33,11 +33,6 @@ export const UsuarioModel = db.define<any, IUsuario>(
       type: DataTypes.TEXT,
       allowNull: false
     },
-    email: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      unique: true
-    },
     login: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -47,9 +42,15 @@ export const UsuarioModel = db.define<any, IUsuario>(
       type: DataTypes.TEXT,
       allowNull: false
     },
+    email: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      unique: true
+    },
     telefone: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     endereco: {
       type: DataTypes.TEXT,
@@ -69,7 +70,7 @@ export const UsuarioModel = db.define<any, IUsuario>(
       defaultValue: 'Porteiro'
     },
     turno: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     empresa: {
@@ -81,7 +82,8 @@ export const UsuarioModel = db.define<any, IUsuario>(
     },
     data_criacao: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: new Date().toLocaleString()
     },
     data_edicao: {
       type: DataTypes.TEXT

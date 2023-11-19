@@ -7,20 +7,20 @@
   "private": true,
   "license": "LGPL-3.0-only",
   "scripts": {
+    "db:init": "yarn sequelize db:migrate && yarn sequelize db:seed:all",
     "db:migrate": "yarn sequelize db:migrate",
     "db:seed": "yarn sequelize db:seed:all",
     "db:undo": "yarn sequelize db:migrate:undo",
     "db:undo:all": "yarn sequelize db:migrate:undo:all",
     "db:mc": "yarn sequelize migration:create --name ",
     "db:sc": "yarn sequelize seed:create --name ",
-    "dev": "quasar dev -m electron",
-    "build": "yarn && yarn sequelize db:migrate && yarn sequelize db:seed:all && yarn quasar build -m electron -P always"
+    "dev": "yarn quasar dev -m electron --offline",
+    "build": "yarn && yarn sequelize db:migrate && yarn sequelize db:seed:all && yarn quasar clean && yarn quasar build -m electron -P always"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
     "axios": "^1.2.1",
     "bcrypt": "^5.1.1",
-    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "quasar": "^2.6.0",
@@ -32,7 +32,6 @@
   "devDependencies": {
     "@quasar/app-webpack": "^3.0.0",
     "@types/bcrypt": "^5.0.2",
-    "@types/cors": "^2.8.16",
     "@types/dotenv": "^8.2.0",
     "@types/node": "^12.20.21",
     "@types/sequelize": "^4.28.18",

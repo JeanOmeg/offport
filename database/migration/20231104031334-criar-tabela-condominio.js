@@ -16,10 +16,6 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      contato_condominio: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
       endereco: {
         type: Sequelize.TEXT,
         allowNull: false
@@ -29,6 +25,10 @@ module.exports = {
         allowNull: false
       },
       cidade: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      estado: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
@@ -55,6 +55,10 @@ module.exports = {
       contato_sindico: {
         type: Sequelize.TEXT
       },
+      contato_condominio: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
       administradora: {
         type: Sequelize.TEXT
       },
@@ -78,7 +82,8 @@ module.exports = {
       },
       data_criacao: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: new Date().toLocaleString()
       },
       data_edicao: {
         type: Sequelize.TEXT

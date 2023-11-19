@@ -2,26 +2,9 @@
 const tabela = 'tipo_usuario'
 
 const lista_roles = [
-  {
-    role: 'Controlador',
-    data_criacao: new Date().toLocaleString()
-  },
-  {
-    role: 'Condomino',
-    data_criacao: new Date().toLocaleString()
-  },
-  {
-    role: 'Sindico',
-    data_criacao: new Date().toLocaleString()
-  },
-  {
-    role: 'Administrador',
-    data_criacao: new Date().toLocaleString()
-  },
-  {
-    role: 'SuperAdmin',
-    data_criacao: new Date().toLocaleString()
-  }
+  { role: 'Controlador' },
+  { role: 'Sindico' },
+  { role: 'Administrador' }
 ]
 
 /** @type {import('sequelize-cli').Migration} */

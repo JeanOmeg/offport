@@ -3,9 +3,9 @@ export interface IUsuario {
   id_condominio: number
   id_tipo_usuario: number
   nome: string
-  email: string
   login: string
   senha: string
+  email: string
   telefone: string
   endereco: string
   bairro: string
@@ -14,6 +14,6 @@ export interface IUsuario {
   turno: string
   empresa: string
   observacao?: string
-  data_criacao: Date
-  data_edicao?: Date
+  data_criacao: string
+  data_edicao?: string
 }

@@ -1,10 +1,10 @@
-import { ILogin } from '../../interfaces/login/login-interface'
+import { IMorador } from '../../interfaces/morador/morador-interface'
 import { db } from '../../util/db'
 import { DataTypes } from 'sequelize'
 
-const tabela = 'login'
+const tabela = 'morador'
 
-export const LoginModel = db.define<any, ILogin>(
+export const MoradorModel = db.define<any, IMorador>(
   tabela, {
     id: {
       type: DataTypes.INTEGER,
@@ -15,35 +15,46 @@ export const LoginModel = db.define<any, ILogin>(
     },
     id_condominio: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'condominio',
         key: 'id'
       }
     },
-    id_tipo_usuario: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'tipo_usuario',
-        key: 'id'
-      }
-    },
-    id_usuario: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'usuario',
-        key: 'id'
-      }
-    },
-    login: {
+    nome: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    apartamento: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    bloco: {
+      type: DataTypes.TEXT
+    },
+    telefone: {
+      type: DataTypes.TEXT
+    },
+    email: {
+      type: DataTypes.TEXT,
+      unique: true
+    },
+    garagem: {
+      type: DataTypes.BOOLEAN
+    },
+    vaga: {
+      type: DataTypes.TEXT
+    },
+    observacao: {
+      type: DataTypes.TEXT
     },
     data_criacao: {
       type: DataTypes.TEXT,
       allowNull: false,
       defaultValue: new Date().toLocaleString()
+    },
+    data_edicao: {
+      type: DataTypes.TEXT
     }
   },
   {

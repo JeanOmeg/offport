@@ -20,11 +20,11 @@ module.exports = {
           key: 'id'
         }
       },
-      id_usuario: {
+      id_morador: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'usuario',
+          model: 'morador',
           key: 'id'
         }
       },
@@ -36,17 +36,18 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      apartamento: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      bloco: {
+      contato: {
         type: Sequelize.TEXT,
         allowNull: false
       },
+      apartamento: {
+        type: Sequelize.INTEGER
+      },
+      bloco: {
+        type: Sequelize.TEXT
+      },
       garagem: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+        type: Sequelize.BOOLEAN
       },
       vaga: {
         type: Sequelize.TEXT
@@ -56,53 +57,23 @@ module.exports = {
         allowNull: false
       },
       empresa: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      contato: {
         type: Sequelize.TEXT
-      },
-      endereco: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      numero: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      complemento: {
-        type: Sequelize.TEXT
-      },
-      bairro: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      cidade: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      estado: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      pais: {
-        type: Sequelize.TEXT,
-        allowNull: false
       },
       data_entrada: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: new Date().toLocaleString()
       },
       data_saida: {
-        type: Sequelize.TEXT,
-        allowNull: false
+        type: Sequelize.TEXT
       },
       observacao: {
         type: Sequelize.TEXT
       },
       data_criacao: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: new Date().toLocaleString()
       },
       data_edicao: {
         type: Sequelize.TEXT

@@ -20,11 +20,11 @@ module.exports = {
           key: 'id'
         }
       },
-      id_usuario: {
+      id_morador: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'usuario',
+          model: 'morador',
           key: 'id'
         }
       },
@@ -44,18 +44,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       bloco: {
-        type: Sequelize.INTEGER
+        type: Sequelize.TEXT
       },
       garagem: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+        type: Sequelize.BOOLEAN
       },
       vaga: {
         type: Sequelize.TEXT
       },
       data_entrada: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: new Date().toLocaleString()
       },
       data_saida: {
         type: Sequelize.TEXT
@@ -65,7 +65,8 @@ module.exports = {
       },
       data_criacao: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: new Date().toLocaleString()
       },
       data_edicao: {
         type: Sequelize.TEXT

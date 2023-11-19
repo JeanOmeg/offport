@@ -5,6 +5,7 @@ dotenv.config()
 
 export async function criarPayloadService (usuario: IUsuario) {
   const login: ILogin = {
+    id: usuario.id,
     id_condominio: usuario.id_condominio,
     id_usuario: usuario.id,
     id_tipo_usuario: usuario.id_tipo_usuario,

@@ -19,7 +19,8 @@ module.exports = {
       },
       data_criacao: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: new Date().toLocaleString()
       },
       data_edicao: {
         type: Sequelize.TEXT

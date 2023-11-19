@@ -41,7 +41,7 @@ module.exports = configure(function (ctx) {
     ],
 
     build: {
-      vueRouterMode: 'hash',
+      vueRouterMode: 'history',
       env: {
         API_URL: ctx.dev ? process.env.API_DEV : process.env.API_PROD
       }
@@ -49,6 +49,7 @@ module.exports = configure(function (ctx) {
 
     devServer: {
       https: false,
+      port: 9000,
       open: true
     },
 

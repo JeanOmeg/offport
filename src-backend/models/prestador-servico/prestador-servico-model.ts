@@ -21,11 +21,11 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
         key: 'id'
       }
     },
-    id_usuario: {
+    id_morador: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'usuario',
+        model: 'morador',
         key: 'id'
       }
     },
@@ -37,17 +37,18 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       type: DataTypes.TEXT,
       allowNull: false
     },
-    apartamento: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    bloco: {
+    contato: {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    apartamento: {
+      type: DataTypes.INTEGER
+    },
+    bloco: {
+      type: DataTypes.TEXT
+    },
     garagem: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      type: DataTypes.BOOLEAN
     },
     vaga: {
       type: DataTypes.TEXT
@@ -57,53 +58,23 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       allowNull: false
     },
     empresa: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    contato: {
       type: DataTypes.TEXT
-    },
-    endereco: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    numero: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    complemento: {
-      type: DataTypes.TEXT
-    },
-    bairro: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    cidade: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    estado: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    pais: {
-      type: DataTypes.TEXT,
-      allowNull: false
     },
     data_entrada: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: new Date().toLocaleString()
     },
     data_saida: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.TEXT
     },
     observacao: {
       type: DataTypes.TEXT
     },
     data_criacao: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: new Date().toLocaleString()
     },
     data_edicao: {
       type: DataTypes.TEXT

@@ -69,7 +69,7 @@ Table usuario  {
 Table visitante {
   id integer [pk, increment, not null]
   id_condominio integer [not null, ref: > condominio.id]
-  id_usuario integer [not null, ref: > usuario.id]
+  id_morador integer [not null, ref: > usuario.id]
   nome string [not null]
   documento string [not null]
   contato string [not null]
@@ -87,7 +87,7 @@ Table visitante {
 Table prestador_servico {
   id integer [pk, increment, not null]
   id_condominio integer [not null, ref: > condominio.id]
-  id_usuario integer [not null, ref: > usuario.id]
+  id_morador integer [not null, ref: > usuario.id]
   nome string [not null]
   documento string [not null]
   apartamento integer [not null]
@@ -114,7 +114,7 @@ Table prestador_servico {
 Table login  {
   id integer [pk, increment, not null]
   id_condominio integer [ref: > condominio.id]
-  id_usuario integer [not null, ref: > usuario.id]
+  id_morador integer [not null, ref: > usuario.id]
   id_tipo_usuario integer [not null, ref: > tipo_usuario.id]
   login string [not null]
   token string(5000) [not null]

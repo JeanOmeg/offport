@@ -21,11 +21,11 @@ export const VisitanteModel = db.define<any, IVisitante>(
         key: 'id'
       }
     },
-    id_usuario: {
+    id_morador: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'usuario',
+        model: 'morador',
         key: 'id'
       }
     },
@@ -45,18 +45,18 @@ export const VisitanteModel = db.define<any, IVisitante>(
       type: DataTypes.INTEGER
     },
     bloco: {
-      type: DataTypes.INTEGER
+      type: DataTypes.TEXT
     },
     garagem: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      type: DataTypes.BOOLEAN
     },
     vaga: {
       type: DataTypes.TEXT
     },
     data_entrada: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: new Date().toLocaleString()
     },
     data_saida: {
       type: DataTypes.TEXT
@@ -66,7 +66,8 @@ export const VisitanteModel = db.define<any, IVisitante>(
     },
     data_criacao: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: new Date().toLocaleString()
     },
     data_edicao: {
       type: DataTypes.TEXT

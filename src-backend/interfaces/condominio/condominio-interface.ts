@@ -1,10 +1,10 @@
 export interface ICondominio {
   id: number
   nome: string
-  contato_condominio: string
   endereco: string
   bairro: string
   cidade: string
+  estado: string
   tipo: string
   qtd_apartamento?: number
   qtd_bloco?: number
@@ -12,6 +12,7 @@ export interface ICondominio {
   qtd_vaga?: number
   sindico?: string
   contato_sindico?: string
+  contato_condominio: string
   administradora?: string
   contato_administradora?: string
   seguranca?: string

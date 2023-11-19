@@ -16,7 +16,8 @@ export async function fazerLoginService (login_schema: LoginSchema, colaborador_
     throw new Error('Erro')
   }
 
-  const comparacao = await bcrypt.compare(dados_login.senha as string, usuario.senha)
+  // trocar interface de dados para login, mudado para .login apenas pra evitar o erro
+  const comparacao = await bcrypt.compare(dados_login.login as string, usuario.senha)
   if (!comparacao) {
     throw new Error('Erro')
   }

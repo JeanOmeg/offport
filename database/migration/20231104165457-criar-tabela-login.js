@@ -19,14 +19,6 @@ module.exports = {
           key: 'id'
         }
       },
-      id_usuario: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'usuario',
-          key: 'id'
-        }
-      },
       id_tipo_usuario: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -35,21 +27,22 @@ module.exports = {
           key: 'id'
         }
       },
+      id_usuario: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'usuario',
+          key: 'id'
+        }
+      },
       login: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      token: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      refresh_token: {
         type: Sequelize.TEXT,
         allowNull: false
       },
       data_criacao: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: new Date().toLocaleString()
       }
     },
     {

@@ -32,11 +32,6 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      email: {
-        type: Sequelize.TEXT,
-        allowNull: false,
-        unique: true
-      },
       login: {
         type: Sequelize.TEXT,
         allowNull: false,
@@ -46,9 +41,15 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
+      email: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        unique: true
+      },
       telefone: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       endereco: {
         type: Sequelize.TEXT,
@@ -68,7 +69,7 @@ module.exports = {
         defaultValue: 'Porteiro'
       },
       turno: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       empresa: {
@@ -80,7 +81,8 @@ module.exports = {
       },
       data_criacao: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: new Date().toLocaleString()
       },
       data_edicao: {
         type: Sequelize.TEXT

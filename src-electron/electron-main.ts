@@ -9,8 +9,10 @@ let mainWindow: BrowserWindow | undefined
 function createWindow () {
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'),
-    width: 1000,
-    height: 600,
+    width: 1360,
+    height: 768,
+    show: false,
+    autoHideMenuBar: true,
     useContentSize: true,
     webPreferences: {
       contextIsolation: true,
@@ -30,10 +32,11 @@ function createWindow () {
     })
   }
 
+  mainWindow.maximize()
+
   mainWindow.on('closed', () => {
     mainWindow = undefined
   })
-
 }
 
 app.whenReady().then(() => {

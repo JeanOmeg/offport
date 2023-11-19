@@ -24,21 +24,19 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      telefone: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      email: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
       apartamento: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
       bloco: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.TEXT
+      },
+      telefone: {
+        type: Sequelize.TEXT
+      },
+      email: {
+        type: Sequelize.TEXT,
+        unique: true
       },
       garagem: {
         type: Sequelize.BOOLEAN
@@ -51,7 +49,8 @@ module.exports = {
       },
       data_criacao: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: new Date().toLocaleString()
       },
       data_edicao: {
         type: Sequelize.TEXT

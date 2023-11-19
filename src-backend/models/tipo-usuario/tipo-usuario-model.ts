@@ -5,8 +5,7 @@ import { DataTypes } from 'sequelize'
 const tabela = 'tipo_usuario'
 
 export const TipoUsuarioModel = db.define<any, ITipoUsuario>(
-  tabela,
-  {
+  tabela, {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -21,7 +20,8 @@ export const TipoUsuarioModel = db.define<any, ITipoUsuario>(
     },
     data_criacao: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: new Date().toLocaleString()
     },
     data_edicao: {
       type: DataTypes.TEXT

@@ -1,7 +1,7 @@
 export interface IUsuarioLogado {
-  id_usuario: string,
-  id_condominio: string,
-  id_tipo_usuario: string,
+  id_morador: number,
+  id_condominio: number,
+  id_tipo_usuario: number,
   nome: string,
   login: string,
 }

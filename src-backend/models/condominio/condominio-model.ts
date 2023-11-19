@@ -17,10 +17,6 @@ export const CondominioModel = db.define<any, ICondominio>(
       type: DataTypes.TEXT,
       allowNull: false
     },
-    contato_condominio: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
     endereco: {
       type: DataTypes.TEXT,
       allowNull: false
@@ -30,6 +26,10 @@ export const CondominioModel = db.define<any, ICondominio>(
       allowNull: false
     },
     cidade: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    estado: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -56,6 +56,10 @@ export const CondominioModel = db.define<any, ICondominio>(
     contato_sindico: {
       type: DataTypes.TEXT
     },
+    contato_condominio: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
     administradora: {
       type: DataTypes.TEXT
     },
@@ -79,7 +83,8 @@ export const CondominioModel = db.define<any, ICondominio>(
     },
     data_criacao: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: new Date().toLocaleString()
     },
     data_edicao: {
       type: DataTypes.TEXT
