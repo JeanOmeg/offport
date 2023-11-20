@@ -15,7 +15,7 @@
     "db:mc": "yarn sequelize migration:create --name ",
     "db:sc": "yarn sequelize seed:create --name ",
     "dev": "yarn quasar dev -m electron",
-    "build": "yarn && yarn sequelize db:migrate && yarn sequelize db:seed:all && yarn quasar clean && yarn quasar build -m electron -P always"
+    "build": "yarn cache clean && yarn sequelize db:migrate && yarn sequelize db:seed:all && yarn quasar clean && yarn quasar build -m electron -P always"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
@@ -32,7 +32,6 @@
   "devDependencies": {
     "@quasar/app-webpack": "^3.0.0",
     "@types/bcrypt": "^5.0.2",
-    "@types/dotenv": "^8.2.0",
     "@types/node": "^12.20.21",
     "@types/sequelize": "^4.28.18",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
