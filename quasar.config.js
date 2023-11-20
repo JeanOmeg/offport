@@ -43,13 +43,15 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: 'history',
       env: {
-        API_URL: ctx.dev ? process.env.API_DEV : process.env.API_PROD
+        API_URL: ctx.dev ? process.env.API_DEV : process.env.API_PROD,
+        PORTA: process.env.PORTA_EXPRESS,
+        URL_PORTA: process.env.URL
       }
     },
 
     devServer: {
       https: false,
-      port: 9000,
+      port: process.env.PORT_QUASAR,
       open: true
     },
 
@@ -137,10 +139,6 @@ module.exports = configure(function (ctx) {
         extraResource: './db.sqlite',
         appId: 'offPort',
         productName: 'offPort',
-        extends: null,
-        externals: {
-          sqlite3: 'commonjs sqlite3'
-        },
         directories: {
           output: 'dist'
         },

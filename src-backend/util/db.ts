@@ -1,13 +1,18 @@
 import { Sequelize } from 'sequelize'
 import * as dotenv from 'dotenv'
+import path from 'path'
+
 dotenv.config()
+
+const developmentDbPath = './db.sqlite'
+const productionDbPath = path.join(process.resourcesPath, './db.sqlite')
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-expect-error
 export const db = new Sequelize({
   database: 'offport',
   dialect: 'sqlite',
-  storage: './db.sqlite',
+  storage: process.env.NODE_ENV === 'production' ? productionDbPath : developmentDbPath,
   seederStorage: 'sequelize',
   seederStorageTableName: 'SequelizeData'
 })

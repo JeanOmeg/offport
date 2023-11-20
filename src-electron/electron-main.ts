@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron'
-import path from 'path'
-import os from 'os'
+import * as path from 'path'
+import * as os from 'os'
 
 const platform = process.platform || os.platform()
 
@@ -22,31 +22,31 @@ function createWindow () {
 
   mainWindow.loadURL(process.env.APP_URL)
 
-  // if (process.env.DEBUGGING) {
-  //   // if on DEV or Production with debug enabled
-  // } else {
-  //   // we're on production; no access to devtools pls
-  //   mainWindow.webContents.on('devtools-opened', () => {
-  //     mainWindow?.webContents.closeDevTools()
-  //   })
-  // }
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.webContents.openDevTools()
+  }
 
   mainWindow.maximize()
-  mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', () => {
     mainWindow = undefined
   })
 }
 
-app.whenReady().then(async () => {
-  createWindow()
+async function startServer () {
   try {
     await require('../src-backend/app_server.ts')
   } catch (error) {
     console.error('Erro ao iniciar o servidor:', error)
   }
-  app.on('activate', async () => {
+}
+
+app.whenReady().then(() => {
+  startServer().then(() => {
+    createWindow()
+  })
+
+  app.on('activate', () => {
     if (mainWindow === undefined) {
       createWindow()
     }
@@ -58,4 +58,3 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-
