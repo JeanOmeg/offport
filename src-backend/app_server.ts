@@ -1,9 +1,11 @@
 import express from 'express'
 require('dotenv').config()
 import routes from './route/index.routes'
+import cors from 'cors'
 
 const app_server = express()
 
+app_server.use(cors())
 app_server.use(express.json())
 app_server.use(routes)
 

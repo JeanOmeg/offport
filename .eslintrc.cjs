@@ -60,7 +60,10 @@ module.exports = {
       multiline: 'below'
     }],
     'vue/mustache-interpolation-spacing': ['error', 'always'],
+    'vue/no-useless-template-attributes': 'off',
+    'vue/no-v-text-v-html-on-component': 'off',
     'vue/component-definition-name-casing': ['error', 'kebab-case'],
+    'vue/prop-name-casing': ['error', 'snake_case'],
     'prefer-promise-reject-errors': 'off',
     quotes: ['error', 'single', { avoidEscape: true }],
     semi: ['error', 'never'],

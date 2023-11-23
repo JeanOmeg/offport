@@ -19,8 +19,10 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
+    "@types/cors": "^2.8.17",
     "axios": "^1.2.1",
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "quasar": "^2.6.0",

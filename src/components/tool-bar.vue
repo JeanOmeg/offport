@@ -1,16 +1,18 @@
 <template>
   <q-header elevated>
-    <q-toolbar class='row justify-between bg-primary text-white'>
-      <div>
-        <q-btn v-if='logado' size='md' icon='menu' aria-label='Menu' @click='drawer = !drawer' />
-      </div>
-      <div>
-        <q-toolbar-title style='font-size: 1.7rem'>
-          OnPort
-        </q-toolbar-title>
-      </div>
-      <div>
-        <q-btn v-if='logado' icon='logout' color='negative' size='md' @click='logoutService' />
+    <q-toolbar class='row justify-center bg-primary text-white'>
+      <div class='row col-10 justify-between'>
+        <div>
+          <q-btn v-if='logado' size='md' icon='menu' aria-label='Menu' @click='drawer = !drawer' />
+        </div>
+        <div>
+          <q-toolbar-title style='font-size: 1.7rem'>
+            OnPort
+          </q-toolbar-title>
+        </div>
+        <div>
+          <q-btn v-if='logado' icon='logout' color='negative' size='md' @click='logoutService' />
+        </div>
       </div>
     </q-toolbar>
     <q-space />

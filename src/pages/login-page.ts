@@ -11,31 +11,32 @@ export default defineComponent({
 
   async created () {
     LocalStorage.set('tela_login', true)
-    await this.removeLoginStorage(this.Q, this.router)
+    await this.removeLoginStorage(this.$q, this.router)
   },
 
   setup () {
-    const Q = useQuasar()
+    const $q = useQuasar()
     const router = useRouter()
     const formulario = ref({} as ILogin)
 
     async function enviarLogin () {
       try {
         if (!formulario.value.login || !formulario.value.senha) {
-          Q.notify({ message: 'Email e/ou Senha obrigatório!', icon: 'error', color: 'negative' })
+          $q.notify({ message: 'Confira seu Login e/ou Senha!', icon: 'error', color: 'negative' })
         } else {
           const usuario: ILogin = { login: formulario.value.login, senha: formulario.value.senha }
           const data = await loginService(usuario)
 
-          await setLoginStorage(data, Q, router)
+          await setLoginStorage(data, $q, router)
         }
       } catch (error) {
-        await removeLoginStorage(Q, router)
+        $q.notify({ message: 'Confira seu Login e/ou Senha!', icon: 'error', color: 'negative' })
+        await removeLoginStorage($q, router)
       }
     }
 
     return {
-      Q,
+      $q,
       router,
       formulario,
       enviarLogin,
