@@ -27,5 +27,6 @@
   "editor.quickSuggestionsDelay": 10,
   "files.exclude": {
     "**/node_modules": true
-  }
+  },
+  "files.insertFinalNewline": true
 }

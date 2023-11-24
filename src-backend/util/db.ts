@@ -4,8 +4,8 @@ import path from 'path'
 
 dotenv.config()
 
-const developmentDbPath = './db.sqlite'
 const productionDbPath = path.join(process.resourcesPath, './db.sqlite')
+const developmentDbPath = './db.sqlite'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-expect-error
