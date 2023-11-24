@@ -16,7 +16,8 @@ function createWindow () {
     useContentSize: true,
     webPreferences: {
       contextIsolation: true,
-      preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD)
+      preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD),
+      devTools: true
     }
   })
 

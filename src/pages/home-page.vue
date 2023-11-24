@@ -1,15 +1,14 @@
 <template>
-  <tool-bar />
-  <q-page class='row justify-center'>
-    <div class='col-xs-12 col-sm-11 col-md-10 col-lg-11 col-xl-12 q-mt-md q-mt-md items-center q-gutter-md' style='height: 85vh;'>
-      <q-card class='row justify-center text-h4' style='font-weight: 300; font-style: italic;'>
-        {{ 'Moradores' }}
-      </q-card>
-      <q-table
-        :rows='rows'
-        :columns='columns'
-      />
-    </div>
+  <q-page class='flex justify-center items-center'>
+    <q-card style='min-width: 65vw' class='flex justify-center items-center'>
+      <q-card-section style='min-height: 85vh; max-height: 90vh;' class='flex justify-center items-center'>
+        <q-table
+          style='min-height: 70vh; max-height: 70vh;'
+          :rows='rows'
+          :columns='columns'
+        />
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 

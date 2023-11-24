@@ -1,13 +1,8 @@
 import { Ref, defineComponent, ref } from 'vue'
-import ToolBar from '../components/tool-bar.vue'
 import { QTableProps } from 'quasar'
 
 export default defineComponent({
   name: 'home-page',
-
-  components: {
-    ToolBar
-  },
 
   setup () {
     const columns: Ref<QTableProps['columns']> = ref([

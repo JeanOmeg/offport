@@ -27,7 +27,9 @@ export default defineComponent({
           const usuario: ILogin = { login: formulario.value.login, senha: formulario.value.senha }
           const data = await loginService(usuario)
 
-          await setLoginStorage(data, $q, router)
+          await setLoginStorage(data)
+          $q.notify({ message: 'Logado!', icon: 'check', color: 'positive' })
+          await router.push({ name: 'home-page' })
         }
       } catch (error) {
         $q.notify({ message: 'Confira seu Login e/ou Senha!', icon: 'error', color: 'negative' })
@@ -36,7 +38,6 @@ export default defineComponent({
     }
 
     return {
-      $q,
       router,
       formulario,
       enviarLogin,

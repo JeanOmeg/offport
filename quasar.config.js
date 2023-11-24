@@ -56,7 +56,11 @@ module.exports = configure(function (ctx) {
     },
 
     framework: {
-      config: {},
+      config: {
+        brand: {
+          primary: '#116ab8'
+        }
+      },
 
       iconSet: 'material-icons',
       plugins: [
@@ -93,8 +97,8 @@ module.exports = configure(function (ctx) {
         description: 'Sistema de controle de acesso e gestão de portaria',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#ffffff',
-        theme_color: '#027be3',
+        background_color: '#a6c5ea',
+        theme_color: '#116ab8',
         icons: [
           {
             src: 'icons/icon-128x128.png',

@@ -3,23 +3,14 @@ import { RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      {
-        path: '',
-        name: 'login-page',
-        component: () => import('src/pages/login-page.vue')
-      },
-      {
-        path: '/home',
-        name: 'home-page',
-        component: () => import('src/pages/home-page.vue')
-      }
-    ]
+    component: () => import('src/layouts/layout-deslogado.vue'),
+    children: [{ path: '', name: 'login-page', component: () => import('src/pages/login-page.vue') }]
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
+  {
+    path: '/inicio',
+    component: () => import('src/layouts/layout-padrao.vue'),
+    children: [{ path: '', name: 'home-page', component: () => import('src/pages/home-page.vue') }]
+  },
   {
     path: '/:catchAll(.*)*',
     component: () => import('src/pages/error-not-found.vue')

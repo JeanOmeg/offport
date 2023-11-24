@@ -1,6 +1,6 @@
 import { LocalStorage, QVueGlobals } from 'quasar'
-import { IUsuarioStorageString } from '../interfaces/usuario-storage-interface'
 import { Router } from 'vue-router'
+import { IUsuarioStorageString } from '../interfaces/usuario-storage-interface'
 
 const notificacao = 'Deslogado!'
 const local_storage: IUsuarioStorageString = {
@@ -13,14 +13,14 @@ const local_storage: IUsuarioStorageString = {
   id_condominio: 'id_condominio'
 }
 
-export async function removeLoginStorage (Q: QVueGlobals, router: Router): Promise<void> {
+export async function removeLoginStorage ($q: QVueGlobals, router: Router): Promise<void> {
   const tela_login = LocalStorage.getItem('tela_login')
   for (const key of Object.values(local_storage)) {
     LocalStorage.remove(key)
   }
 
   if (!tela_login) {
-    Q.notify({
+    $q.notify({
       message: notificacao,
       icon: 'error',
       color: 'negative'
