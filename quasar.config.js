@@ -1,6 +1,3 @@
-/* eslint-env node */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 const { configure } = require('quasar/wrappers')
 const path = require('path')
 require('dotenv').config()
@@ -28,7 +25,7 @@ module.exports = configure(function (ctx) {
 
     extends: [
       'plugin:@typescript-eslint/recommended',
-      'plugin:vue/vue3-strongly-recommended' // Priority B: Strongly Recommended (Improving Readability)
+      'plugin:vue/vue3-strongly-recommended'
     ],
 
     css: [
@@ -58,7 +55,17 @@ module.exports = configure(function (ctx) {
     framework: {
       config: {
         brand: {
-          primary: '#116ab8'
+          dark: '#1b3549',
+          primary: '#244963',
+          secondary: '#4182ac',
+          info: '#c6e1f2',
+          
+          'dark-page': '#142b39',
+          
+          accent: '#daa6e3',
+          positive: '#87c7ff',
+          negative: '#e45e5d',
+          warning: '#f8ffa7'
         }
       },
 
@@ -67,19 +74,6 @@ module.exports = configure(function (ctx) {
         'LocalStorage',
         'Loading',
         'Notify'
-      ]
-    },
-
-    animations: [],
-
-    ssr: {
-      pwa: true,
-      prodPort: 3000,
-
-      maxAge: 1000 * 60 * 60 * 24 * 30,
-      middlewares: [
-        ctx.prod ? 'compression' : '',
-        'render'
       ]
     },
 
@@ -93,12 +87,8 @@ module.exports = configure(function (ctx) {
 
       manifest: {
         name: 'offPort',
-        short_name: 'OP',
-        description: 'Sistema de controle de acesso e gestão de portaria',
-        display: 'standalone',
-        orientation: 'portrait',
-        background_color: '#a6c5ea',
-        theme_color: '#116ab8',
+        short_name: 'offPort',
+        description: 'Solução completa e offline para seu condomínio',
         icons: [
           {
             src: 'icons/icon-128x128.png',
@@ -127,14 +117,6 @@ module.exports = configure(function (ctx) {
           }
         ]
       }
-    },
-
-    cordova: {
-      // noIosLegacyBuildFlag: true,
-    },
-
-    capacitor: {
-      hideSplashscreen: true
     },
 
     electron: {
@@ -167,25 +149,7 @@ module.exports = configure(function (ctx) {
             }
           ]
         }
-      },
-
-      builder: {
-        // https://www.electron.build/configuration/configuration
-
-        appId: 'off-port'
       }
-    },
-
-    // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-    chainWebpackMain (/* chain */) {
-      // do something with the Electron main process Webpack cfg
-      // extendWebpackMain also available besides this chainWebpackMain
-    },
-
-    // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-    chainWebpackPreload (/* chain */) {
-      // do something with the Electron main process Webpack cfg
-      // extendWebpackPreload also available besides this chainWebpackPreload
     }
   }
 })

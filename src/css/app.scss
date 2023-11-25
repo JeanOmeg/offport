@@ -1,1 +1,18 @@
-// app global css in SCSS form
+.body--light {
+  background-color: #e1f4ff;
+}
+
+.aviso {
+  position: fixed !important;
+  bottom: 20px !important;
+}
+
+.max-width-50 {
+  min-width: 50% !important; 
+  max-width: 50% !important;
+}
+
+.max-width-100 {
+  min-width: 100% !important;
+  max-width: 100% !important;
+}

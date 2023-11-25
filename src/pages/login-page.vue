@@ -1,26 +1,34 @@
 <template>
-  <q-page class='row items-center'>
-    <div class='col-6'>
-      <q-img src='../assets/offPort.jpeg' style='height: 90vh; width: 100%;' />
+  <q-page class='row justify-evenly items-center'>
+    <div class='column justify-center items-center'>
+      <q-img src='../assets/offPort.png' width='500px' height='500px' />
     </div>
-    <div class='row col-6 justify-center items-center q-mt-xl'>
-      <q-form @submit='enviarLogin' class='row col-12 items-center justify-center'>
-        <div class='col-12 text-h6 text-center q-mb-md'>
-          <span class='text-h1' style='font-style: italic; font-weight: 500;'>offPort</span><br>Solução completa e offline para seu condomínio
+    <div class='column justify-center items-center'>
+      <q-form @submit='enviarLogin' class='column q-gutter-sm'>
+        <div class='row justify-center'>
+          <span class='row text-h1 text-primary text-bold'> 
+            off
+          </span>
+          <span class='row text-h1 text-primary text-bold text-italic'>
+            Port
+            <q-icon name='home' />
+          </span>
         </div>
-        <div class='col-8'>
-          <q-input filled v-model='formulario.login' type='text' label='Login' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
-        </div>
-        <div class='col-8'>
-          <q-input filled v-model='formulario.senha' type='password' label='Senha' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de senha corretamente!']" class='row col-4' />
-        </div>
-        <div class='row justify-center col-12 q-mb-md'>
-          <q-btn label='Login' color='primary' type='submit' size='md' />
-        </div>
-        <div class='text-h6 text-center q-mb-md' style='font-style: italic; font-size: 14px;'>
-          Jean Fernandes - www.github.com/JeanOmeg
+        <span class='text-h6 text-primary text-bold'>Solução completa e offline para seu condomínio</span>
+        <q-input filled dense v-model='formulario.login' type='text' label='Login' label-color='primary' bg-color='info' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
+        <q-input filled dense v-model='formulario.senha' type='password' label='Senha' label-color='primary' bg-color='info' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de senha corretamente!']" />
+        <div class='row justify-center'>
+          <q-btn label='Acessar' color='primary' type='submit' size='md' />
         </div>
       </q-form>
+    </div>
+    <div class='row justify-center items-center aviso max-width-100'>
+      <div class='text-center text-h6 text-primary max-width-100'>
+        <span>Venda proibida!</span>
+      </div>
+      <div class='text-center text-primary text-italic text-bold'>
+        <span>Desenvolvido por Jean Fernandes - www.github.com/JeanOmeg</span>
+      </div>
     </div>
   </q-page>
 </template>
@@ -31,7 +39,4 @@ export default loginPage
 </script>
 
 <style>
-  .text-none {
-    text-decoration: none;
-  }
 </style>
