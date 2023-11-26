@@ -2,17 +2,41 @@
   background-color: #e1f4ff;
 }
 
+.botao {
+  width: 100px !important;
+}
+
 .aviso {
   position: fixed !important;
   bottom: 20px !important;
 }
 
-.max-width-50 {
-  min-width: 50% !important; 
-  max-width: 50% !important;
+.menu-toolbar {
+  font-size: large !important;
 }
 
 .max-width-100 {
   min-width: 100% !important;
   max-width: 100% !important;
+}
+
+.card-padrao {
+  min-width: 900px !important;
+  max-width: 900px !important;
+  min-height: 620px !important;
+  max-height: 620px !important;
+}
+
+.filtro {
+  min-width: 100% !important;
+  max-width: 100% !important;
+  min-height: 120px !important;
+  max-height: 120px !important;
+}
+
+.tabela {
+  min-width: 100% !important;
+  max-width: 100% !important;
+  min-height: 400px !important;
+  max-height: 400px !important;
 }

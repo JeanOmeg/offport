@@ -13,18 +13,24 @@ const local_storage: IUsuarioStorageString = {
   id_condominio: 'id_condominio'
 }
 
-export async function removeLoginStorage ($q: QVueGlobals, router: Router): Promise<void> {
-  const tela_login = LocalStorage.getItem('tela_login')
-  for (const key of Object.values(local_storage)) {
-    LocalStorage.remove(key)
+export async function removeLoginStorage ($q: QVueGlobals, router: Router, logado: boolean = true, sair: boolean = false): Promise<void> {
+  const usuario_logado = LocalStorage.getItem('logado') as boolean
+  if (!usuario_logado) {
+    for (const key of Object.values(local_storage)) {
+      LocalStorage.remove(key)
+    }
   }
 
-  if (!tela_login) {
+  if (!logado) {
     $q.notify({
       message: notificacao,
       icon: 'error',
       color: 'negative'
     })
     await router.push({ name: 'login-page' })
+  }
+  
+  if (sair) {
+    window.close()
   }
 }

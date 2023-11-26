@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { LocalStorage, useQuasar } from 'quasar'
+import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
 import { ILogin } from '../interfaces/login-interface'
 import { removeLoginStorage } from '../utils/remove-login-storage'
@@ -10,8 +10,7 @@ export default defineComponent({
   name: 'login-page',
 
   async created () {
-    LocalStorage.set('tela_login', true)
-    await this.removeLoginStorage(this.$q, this.router)
+    this.logout()
   },
 
   setup () {
@@ -29,7 +28,7 @@ export default defineComponent({
 
           await setLoginStorage(data)
           $q.notify({ message: 'Logado!', icon: 'check', color: 'positive' })
-          await router.push({ name: 'home-page' })
+          await router.push({ name: 'visitantes' })
         }
       } catch (error) {
         $q.notify({ message: 'Confira seu Login e/ou Senha!', icon: 'error', color: 'negative' })
@@ -37,11 +36,16 @@ export default defineComponent({
       }
     }
 
+    async function logout (_logado?: boolean, _sair?: boolean) {
+      await removeLoginStorage($q, router, _logado, _sair)
+    }
+
     return {
       router,
       formulario,
       enviarLogin,
-      removeLoginStorage
+      removeLoginStorage,
+      logout
     }
   }
 })

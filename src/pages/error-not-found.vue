@@ -7,7 +7,7 @@
       <div class='text-h2' style='opacity: 0.4'>
         Página não encontrada
       </div>
-      <q-btn class='q-mt-xl' color='white' text-color='blue' unelevated to='/inicio' label='Início' no-caps />
+      <q-btn class='botao' color='white' text-color='blue' unelevated to='/visitantes' label='Início' no-caps />
     </div>
   </div>
 </template>

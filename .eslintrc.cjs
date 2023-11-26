@@ -64,6 +64,7 @@ module.exports = {
     'vue/no-v-text-v-html-on-component': 'off',
     'vue/component-definition-name-casing': ['error', 'kebab-case'],
     'vue/prop-name-casing': ['error', 'snake_case'],
+    "vue/multi-word-component-names": 'off',
     'prefer-promise-reject-errors': 'off',
     quotes: ['error', 'single', { avoidEscape: true }],
     semi: ['error', 'never'],

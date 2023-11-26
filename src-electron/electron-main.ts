@@ -3,17 +3,17 @@ import * as path from 'path'
 import * as os from 'os'
 
 const platform = process.platform || os.platform()
-
 let mainWindow: BrowserWindow | undefined
 
 function createWindow () {
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'),
     show: false,
-    minWidth: 1024,
-    minHeight: 768,
+    minWidth: 1000,
+    minHeight: 700,
     autoHideMenuBar: true,
     useContentSize: true,
+    title: 'OffPort - Solução completa e offline para seu condomínio',
     webPreferences: {
       contextIsolation: true,
       preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD),
@@ -23,7 +23,8 @@ function createWindow () {
 
   mainWindow.loadURL(process.env.APP_URL)
 
-  mainWindow.maximize()
+  mainWindow.show()
+  mainWindow.setFullScreen(true)
 
   mainWindow.on('closed', () => {
     mainWindow = undefined

@@ -1,7 +1,7 @@
 <template>
   <q-layout view='hHh lpR lFr'>
     <q-page-container>
-      <tool-bar />
+      <toolbar />
       <router-view />
     </q-page-container>
   </q-layout>
@@ -9,12 +9,12 @@
 
 <script>
 import { defineComponent } from 'vue'
-import ToolBar from '../components/tool-bar.vue'
+import toolbar from '../components/toolbar.vue'
 
 export default defineComponent({
   name: 'layout-padrao',
   components: {
-    ToolBar
+    toolbar
   },
 
   setup () {
