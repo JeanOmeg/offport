@@ -11,6 +11,6 @@ export async function setLoginStorage (data: IUsuarioStorage): Promise<void> {
   const usuario_storage = Object.keys(data) as (keyof IUsuarioStorage)[]
 
   for (const key of usuario_storage) {
-    LocalStorage.set(key, data[key] as any)
+    LocalStorage.set(key, data[key])
   }
 }

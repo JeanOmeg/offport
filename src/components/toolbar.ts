@@ -14,10 +14,7 @@ export default defineComponent({
   },
 
   async mounted () {
-    this.logado = LocalStorage.getItem('logado') as boolean
-    if (!this.logado) {
-      await this.logout()
-    }
+    await this.logout()
   },
 
   setup () {
@@ -27,6 +24,7 @@ export default defineComponent({
     const $q = useQuasar()
 
     async function logout (_logado?: boolean, _sair?: boolean) {
+      logado.value = LocalStorage.getItem('logado') as boolean
       await removeLoginStorage($q, router, _logado, _sair)
     }
 

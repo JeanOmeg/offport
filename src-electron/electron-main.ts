@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, screen } from 'electron'
 import * as path from 'path'
 import * as os from 'os'
 
@@ -9,10 +9,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'),
     show: false,
-    minWidth: 1000,
-    minHeight: 700,
     autoHideMenuBar: true,
-    useContentSize: true,
     title: 'OffPort - Solução completa e offline para seu condomínio',
     webPreferences: {
       contextIsolation: true,
@@ -23,8 +20,10 @@ function createWindow () {
 
   mainWindow.loadURL(process.env.APP_URL)
 
-  mainWindow.show()
-  mainWindow.setFullScreen(true)
+  mainWindow.on('ready-to-show', () => {
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize
+    mainWindow?.setMinimumSize(width, height)
+  })
 
   mainWindow.on('closed', () => {
     mainWindow = undefined
@@ -42,7 +41,10 @@ async function startServer () {
 app.whenReady().then(() => {
   startServer().then(() => {
     createWindow()
+    mainWindow?.maximize()
+    mainWindow?.focus()
   })
+
 
   app.on('activate', () => {
     if (mainWindow === undefined) {

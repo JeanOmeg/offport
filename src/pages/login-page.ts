@@ -10,7 +10,7 @@ export default defineComponent({
   name: 'login-page',
 
   async created () {
-    this.logout()
+    await this.logout()
   },
 
   setup () {
@@ -32,7 +32,7 @@ export default defineComponent({
         }
       } catch (error) {
         $q.notify({ message: 'Confira seu Login e/ou Senha!', icon: 'error', color: 'negative' })
-        await removeLoginStorage($q, router)
+        await logout()
       }
     }
 
