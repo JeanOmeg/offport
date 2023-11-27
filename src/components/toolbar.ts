@@ -41,7 +41,7 @@ export default defineComponent({
       { title: 'Garagem', route: '/visitantes', icon: 'drive_eta' },
       { title: 'Condomínio', route: '/visitantes', icon: 'apartment' },
       { title: 'Ocorrências', route: '/visitantes', icon: 'report' },
-      { title: 'Usuário', route: '/visitantes', icon: 'person' }
+      { title: 'Perfil', route: '/visitantes', icon: 'person' }
     ])
 
     const lista_menu_admin = ref([
