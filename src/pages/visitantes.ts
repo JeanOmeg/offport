@@ -1,10 +1,12 @@
 import { Ref, defineComponent, ref } from 'vue'
 import { QTableProps } from 'quasar'
+import { IUsuarioStorageString } from 'src/interfaces/usuario-storage-interface'
 
 export default defineComponent({
   name: 'visitantes',
 
   setup () {
+    const formulario = ref({} as IUsuarioStorageString)
     const columns: Ref<QTableProps['columns']> = ref([
       {
         name: 'name',
@@ -162,7 +164,8 @@ export default defineComponent({
 
     return {
       columns,
-      rows
+      rows,
+      formulario
     }
   }
 })

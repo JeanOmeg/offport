@@ -2,6 +2,10 @@
   background-color: #e1f4ff;
 }
 
+.bg-input {
+  background-color: #e1f4ff;
+}
+
 .botao {
   width: 100px !important;
 }
@@ -20,25 +24,18 @@
   max-width: 100% !important;
 }
 
-.card-padrao {
-  min-width: 900px !important;
-  max-width: 900px !important;
-  min-height: 620px !important;
-  max-height: 620px !important;
+.max-width-95 {
+  max-width: 95% !important;
 }
 
 .filtro {
-  min-width: 100% !important;
-  max-width: 100% !important;
-  min-height: 120px !important;
-  max-height: 120px !important;
+  min-height: 100px !important;
+  max-height: 100px !important;
 }
 
 .tabela {
-  min-width: 100% !important;
-  max-width: 100% !important;
-  min-height: 500px !important;
-  max-height: 500px !important;
+  min-height: 400px !important;
+  max-height: 400px !important;
 }
 
 .pm-none {

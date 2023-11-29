@@ -59,10 +59,10 @@ module.exports = configure(function (ctx) {
           primary: '#244963',
           secondary: '#4182ac',
           info: '#c6e1f2',
-          
+
           'dark-page': '#142b39',
           
-          accent: '#daa6e3',
+          accent: '#e1f4ff',
           positive: '#87c7ff',
           negative: '#e45e5d',
           warning: '#f8ffa7'
@@ -86,7 +86,8 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: 'offPort',
+        name: 'offPort - Solução completa e offline para seu condomínio',
+        productName: 'offPort - Solução completa e offline para seu condomínio',
         short_name: 'offPort',
         description: 'Solução completa e offline para seu condomínio',
         icons: [
@@ -124,7 +125,7 @@ module.exports = configure(function (ctx) {
       packager: {
         extraResource: './db.sqlite',
         appId: 'offPort',
-        productName: 'offPort',
+        productName: 'offPort - Solução completa e offline para seu condomínio',
         directories: {
           output: 'dist'
         },
