@@ -22,7 +22,8 @@ function createWindow () {
 
   mainWindow.on('ready-to-show', () => {
     const { width, height } = screen.getPrimaryDisplay().workAreaSize
-    mainWindow?.setMinimumSize(width, height)
+    mainWindow?.setMinimumSize(1280, 720)
+    mainWindow?.setMaximumSize(width, height)
   })
 
   mainWindow.on('closed', () => {

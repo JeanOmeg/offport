@@ -159,13 +159,57 @@ export default defineComponent({
         sodium: 54,
         calcium: '12%',
         iron: '6%'
+      },
+      {
+        name: 'Honeycomb',
+        calories: 408,
+        fat: 3.2,
+        carbs: 87,
+        protein1: 4.0,
+        protein2: 4.0,
+        protein3: 4.0,
+        protein4: 4.0,
+        sodium: 562,
+        calcium: '0%',
+        iron: '45%'
+      },
+      {
+        name: 'Donut',
+        calories: 452,
+        fat: 25.0,
+        carbs: 51,
+        protein1: 4.0,
+        protein2: 4.0,
+        protein3: 4.0,
+        protein4: 4.0,
+        sodium: 326,
+        calcium: '2%',
+        iron: '22%'
+      },
+      {
+        name: 'KitKat',
+        calories: 518,
+        fat: 26.0,
+        carbs: 65,
+        protein1: 4.0,
+        protein2: 4.0,
+        protein3: 4.0,
+        protein4: 4.0,
+        sodium: 54,
+        calcium: '12%',
+        iron: '6%'
       }
     ])
+
+    function getPaginationLabel (firstRowIndex, endRowIndex, totalRowsNumber) {
+      return `Dados Cadastrados ${totalRowsNumber}`
+    }
 
     return {
       columns,
       rows,
-      formulario
+      formulario,
+      getPaginationLabel
     }
   }
 })

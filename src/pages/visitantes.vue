@@ -1,40 +1,55 @@
 <template>
-  <q-page class='row justify-center items-center'>
-    <q-card class='col-12 max-width-95 q-my-md'>
-      <q-card-section class='row items-center justify-between' style='margin-bottom: 0;padding-bottom: 0;'>
-        <q-separator class='col pm-none' size='2px' color='primary' />
-        <span class='text-center text-bold text-primary pm-none' style='width: 60px;'>
-          Filtros
-        </span>
-        <q-separator class='col pm-none' size='2px' color='primary' />
-      </q-card-section>
-
-      <q-card-section class='col-12 row justify-center' style='height: 120px; margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;'>
-        <div class='col-12 row justify-center items-center q-gutter-sm'>
-          <q-input class='col' hide-bottom-space v-model='formulario.login' type='text' label='Login' label-color='primary' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
-          <q-input class='col' hide-bottom-space v-model='formulario.id_condominio' type='text' label='Login' label-color='primary' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
-          <q-input class='col' hide-bottom-space v-model='formulario.logado' type='text' label='Login' label-color='primary' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
+  <q-page class='row items-center justify-center q-pa-md'>
+    <q-card class='col-12 q-pa-md items-center justify-between' :style="$q.screen.height > 768 ? 'min-height: 700px; max-height: 700px;' : 'min-height: 600px; max-height: 600px;'">
+      <q-card-section class='row col-12 items-center justify-center q-pa-none'>
+        <q-separator class='col' size='2px' color='primary' />
+        <div class='text-center text-bold text-primary'>
+          <span class='q-mx-md'>
+            Filtros
+          </span>
         </div>
-
-        <div class='col-12 row justify-center items-center q-gutter-sm'>
-          <q-input class='col' hide-bottom-space v-model='formulario.login' type='text' label='Login' label-color='primary' bg-color='accent' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
-          <q-input class='col' hide-bottom-space v-model='formulario.id_condominio' type='text' label='Login' label-color='primary' bg-color='accent' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
-          <q-input class='col' hide-bottom-space v-model='formulario.logado' type='text' label='Login' label-color='primary' bg-color='accent' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
+        <q-separator class='col' size='2px' color='primary' />
+      </q-card-section>
+  
+      <q-card-section class='row col-12 q-pa-none'>
+        <q-form class='col-12'>
+          <div class='col-12 row justify-center items-center q-col-gutter-sm'>
+            <q-input class='column col-4' dense v-model='formulario.id_condominio' type='text' label='Nome' label-color='primary' />
+            <q-input class='column col-4' dense v-model='formulario.logado' type='number' :counter='false' label='Apartamento' label-color='primary' />
+            <q-input class='column col-4' dense v-model='formulario.login' type='text' label='Bloco' label-color='primary' />
+            <q-input class='column col-4' unmasked-value dense v-model='formulario.token' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' />
+            <q-input class='column col-4' dense unmasked-value v-model='formulario.refresh_token' type='datetime-local' label='Data de Saída' label-color='primary' />
+            <q-input class='column col-4' dense v-model='formulario.id_usuario' type='tel' mask='(##) ##### - ####' unmasked-value label='Telefone' label-color='primary' />
+            <div class='column q-mt-sm col-12 items-end'>
+              <q-btn color='primary' class='col-1' size='md'>
+                <span class='flex q-mr-sm'>Pesquisar</span>
+                <q-icon name='search' />
+              </q-btn>
+            </div>
+          </div>
+        </q-form>
+      </q-card-section>
+  
+      <q-card-section class='row items-center justify-center q-px-none q-pt-sm'>
+        <q-separator class='col' size='2px' color='primary' />
+        <div class='text-center text-bold text-primary'>
+          <span class='q-mx-md'>
+            Visitantes
+          </span>
         </div>
+        <q-separator class='col' size='2px' color='primary' />
       </q-card-section>
-
-      <q-card-section class='row items-center justify-between' style='margin-bottom: 0;padding-bottom: 0;'>
-        <q-separator class='col pm-none' size='2px' color='primary' />
-        <span class='text-center text-bold text-primary pm-none' style='width: 80px;'>
-          Visitantes
-        </span>
-        <q-separator class='col pm-none' size='2px' color='primary' />
-      </q-card-section>
-
-      <q-card-section class='col-12 row justify-center' style='padding-top: 0;'>
+  
+      <q-card-section class='row items-center justify-center q-pa-none'>
         <q-table
-          dense
-          class='tabela'
+          no-data-label='Não possui dados para serem exibidos!'
+          bordered
+          flat
+          :pagination-label='getPaginationLabel'
+          class='col-12'
+          rows-per-page-label='Linhas por página'
+          style='max-height: 460px; min-height: 460px;'
+          :rows-per-page-options='[0]'
           :rows='rows'
           :columns='columns'
         />

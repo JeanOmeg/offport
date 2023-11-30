@@ -28,5 +28,8 @@
   "files.exclude": {
     "**/node_modules": true
   },
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "[scss]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  }
 }
