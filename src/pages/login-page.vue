@@ -6,19 +6,18 @@
     <div class='column justify-center items-center'>
       <q-form @submit='enviarLogin' class='column q-gutter-sm'>
         <div class='row justify-center'>
-          <span class='row text-h1 text-primary text-bold'> 
+          <span class='row text-h1 text-dark text-bold'> 
             off
           </span>
-          <span class='row text-h1 text-primary text-bold text-italic'>
-            Port
+          <span class='row text-h1 text-dark text-bold text-italic'>
+            {{ 'Port' }}
             <q-icon name='home' />
           </span>
         </div>
         <span class='text-h6 text-primary text-bold'>Solução completa e offline para seu condomínio</span>
         <q-input filled dense v-model='formulario.login' type='text' label='Login' label-color='primary' bg-color='info' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
         <q-input filled dense v-model='formulario.senha' type='password' label='Senha' label-color='primary' bg-color='info' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de senha corretamente!']" />
-        <div class='row justify-between'>
-          <q-btn class='botao' label='Fechar' color='negative' @click='logout(true, true)' size='md' />
+        <div class='row justify-center'>
           <q-btn class='botao' label='Acessar' color='primary' type='submit' size='md' />
         </div>
       </q-form>

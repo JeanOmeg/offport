@@ -1,215 +1,64 @@
-import { Ref, defineComponent, ref } from 'vue'
-import { QTableProps } from 'quasar'
-import { IUsuarioStorageString } from 'src/interfaces/usuario-storage-interface'
+import { defineComponent, ref } from 'vue'
+import { IColuna } from 'src/interfaces/coluna-interface'
+import { IVisitanteCadastro } from 'src/interfaces/visitante-page-interface'
+import { dadosParaExibir, getPaginationLabel } from 'src/utils/tabela-util'
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'visitantes',
 
+  mounted () {
+    this.dadosParaExibir()
+  },
+
   setup () {
-    const formulario = ref({} as IUsuarioStorageString)
-    const columns: Ref<QTableProps['columns']> = ref([
-      {
-        name: 'name',
-        required: true,
-        label: 'Dessert (100g serving)',
-        align: 'left',
-        field: row => row.name,
-        format: val => `${val}`,
-        sortable: true
-      },
-      { name: 'calories', align: 'center', label: 'Calories', field: 'calories', sortable: true },
-      { name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
-      { name: 'carbs', label: 'Carbs (g)', field: 'carbs' },
-      { name: 'protein1', label: 'Protein (g)', field: 'protein1' },
-      { name: 'protein2', label: 'Protein (g)', field: 'protein2' },
-      { name: 'protein3', label: 'Protein (g)', field: 'protein3' },
-      { name: 'protein4', label: 'Protein (g)', field: 'protein4' },
-      { name: 'sodium', label: 'Sodium (mg)', field: 'sodium' },
-      { name: 'calcium', label: 'Calcium (%)', field: 'calcium', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) },
-      { name: 'iron', label: 'Iron (%)', field: 'iron', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) }
-    ])
+    const formulario = ref({} as IVisitanteCadastro)
+    const visitante_cadastro = ref({} as IVisitanteCadastro)
+    const $q = useQuasar()
+    const popup_visitante = ref(false)
+    const editor = ref('')
+    const colunas_visitantes = ref([
+      { name: 'nome', required: true, label: 'Nome', align: 'left', field: (row: IVisitanteCadastro) => row.nome, format: val => `${val}`, sortable: true },
+      { name: 'documento', align: 'left', label: 'Documento', field: (row: IVisitanteCadastro) => row.documento, sortable: true },
+      { name: 'contato', label: 'Telefone', align: 'left', field: (row: IVisitanteCadastro) => row.telefone, sortable: true },
+      { name: 'morador', label: 'Morador', align: 'left', field: (row: IVisitanteCadastro) => row.autorizado_por, sortable: true },
+      { name: 'apartamento', label: 'Apartamento', align: 'left', field: (row: IVisitanteCadastro) => row.apartamento },
+      { name: 'bloco', label: 'Bloco', align: 'left', field: (row: IVisitanteCadastro) => row.bloco },
+      { name: 'garagem', label: 'Garagem', align: 'left', field: (row: IVisitanteCadastro) => row.garagem },
+      { name: 'vaga', label: 'Vaga', align: 'left', field: (row: IVisitanteCadastro) => row.vaga },
+      { name: 'data_entrada', label: 'Data de Entrada', align: 'left', field: (row: IVisitanteCadastro) => row.data_entrada },
+      { name: 'data_saida', label: 'Data de Saída', align: 'left', field: (row: IVisitanteCadastro) => row.data_saida },
+      { name: 'observacao', label: 'Observação', align: 'left', field: (row: IVisitanteCadastro) => row.observacao }
+    ] as IColuna[])
 
-    const rows: Ref<QTableProps['rows']> = ref([
-      {
-        name: 'Frozen Yogurt',
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 87,
-        calcium: '14%',
-        iron: '1%'
-      },
-      {
-        name: 'Ice cream sandwich',
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 129,
-        calcium: '8%',
-        iron: '1%'
-      },
-      {
-        name: 'Eclair',
-        calories: 262,
-        fat: 16.0,
-        carbs: 23,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 337,
-        calcium: '6%',
-        iron: '7%'
-      },
-      {
-        name: 'Cupcake',
-        calories: 305,
-        fat: 3.7,
-        carbs: 67,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 413,
-        calcium: '3%',
-        iron: '8%'
-      },
-      {
-        name: 'Gingerbread',
-        calories: 356,
-        fat: 16.0,
-        carbs: 49,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 327,
-        calcium: '7%',
-        iron: '16%'
-      },
-      {
-        name: 'Jelly bean',
-        calories: 375,
-        fat: 0.0,
-        carbs: 94,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 50,
-        calcium: '0%',
-        iron: '0%'
-      },
-      {
-        name: 'Lollipop',
-        calories: 392,
-        fat: 0.2,
-        carbs: 98,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 38,
-        calcium: '0%',
-        iron: '2%'
-      },
-      {
-        name: 'Honeycomb',
-        calories: 408,
-        fat: 3.2,
-        carbs: 87,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 562,
-        calcium: '0%',
-        iron: '45%'
-      },
-      {
-        name: 'Donut',
-        calories: 452,
-        fat: 25.0,
-        carbs: 51,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 326,
-        calcium: '2%',
-        iron: '22%'
-      },
-      {
-        name: 'KitKat',
-        calories: 518,
-        fat: 26.0,
-        carbs: 65,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 54,
-        calcium: '12%',
-        iron: '6%'
-      },
-      {
-        name: 'Honeycomb',
-        calories: 408,
-        fat: 3.2,
-        carbs: 87,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 562,
-        calcium: '0%',
-        iron: '45%'
-      },
-      {
-        name: 'Donut',
-        calories: 452,
-        fat: 25.0,
-        carbs: 51,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 326,
-        calcium: '2%',
-        iron: '22%'
-      },
-      {
-        name: 'KitKat',
-        calories: 518,
-        fat: 26.0,
-        carbs: 65,
-        protein1: 4.0,
-        protein2: 4.0,
-        protein3: 4.0,
-        protein4: 4.0,
-        sodium: 54,
-        calcium: '12%',
-        iron: '6%'
+    const rows = ref([] as IVisitanteCadastro[])
+
+    async function salvarVisitante () {
+      try {
+        $q.notify({ message: 'Visitante salvo com sucesso!', icon: 'check', color: 'positive' })
+        fecharModal()
+      } catch (error) {
+        $q.notify({ message: 'Erro ao salvar Visitante', icon: 'error', color: 'negative' })
       }
-    ])
+    }
 
-    function getPaginationLabel (firstRowIndex, endRowIndex, totalRowsNumber) {
-      return `Dados Cadastrados ${totalRowsNumber}`
+    function fecharModal () {
+      popup_visitante.value = false
+      editor.value = ''
+      visitante_cadastro.value = {} as IVisitanteCadastro
     }
 
     return {
-      columns,
+      colunas_visitantes,
       rows,
       formulario,
-      getPaginationLabel
+      popup_visitante,
+      visitante_cadastro,
+      editor,
+      getPaginationLabel,
+      dadosParaExibir,
+      salvarVisitante,
+      fecharModal
     }
   }
 })

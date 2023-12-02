@@ -20,6 +20,12 @@ function createWindow () {
 
   mainWindow.loadURL(process.env.APP_URL)
 
+  mainWindow.webContents.on('before-input-event', (event, input) => {
+    if (input.alt) {
+      event.preventDefault()
+    }
+  })
+
   mainWindow.on('ready-to-show', () => {
     const { width, height } = screen.getPrimaryDisplay().workAreaSize
     mainWindow?.setMinimumSize(1280, 720)

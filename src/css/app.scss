@@ -24,6 +24,21 @@
   max-width: 100% !important;
 }
 
+.max-height-100 {
+  min-height: 100% !important;
+  max-height: 100% !important;
+}
+
+.dialog-width {
+  min-width: 60% !important;
+  max-width: 60% !important;
+}
+
+.dialog-height {
+  min-height: 90% !important;
+  max-height: 90% !important;
+}
+
 .max-width-95 {
   max-width: 90% !important;
 }
@@ -33,9 +48,24 @@
   max-height: 100px !important;
 }
 
-.tabela {
+.tabela-full-hd {
   min-height: 400px !important;
   max-height: 400px !important;
+}
+
+.tela-full-hd {
+  min-height: 460px !important;
+  max-height: 460px !important;
+}
+
+.tabela-full-hd {
+  min-height: 600px !important;
+  max-height: 600px !important;
+}
+
+.tabela-hd {
+  min-height: 360px !important;
+  max-height: 360px !important;
 }
 
 .pm-none {

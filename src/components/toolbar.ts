@@ -39,8 +39,8 @@ export default defineComponent({
       { title: 'Reservas', route: '/visitantes', icon: 'calendar_month' },
       { title: 'Moradores', route: '/visitantes', icon: 'groups' },
       { title: 'Garagem', route: '/visitantes', icon: 'drive_eta' },
-      { title: 'Condomínio', route: '/visitantes', icon: 'apartment' },
       { title: 'Ocorrências', route: '/visitantes', icon: 'report' },
+      { title: 'Condomínio', route: '/visitantes', icon: 'apartment' },
       { title: 'Perfil', route: '/visitantes', icon: 'person' }
     ])
 
