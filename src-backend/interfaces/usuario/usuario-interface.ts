@@ -1,6 +1,5 @@
 export interface IUsuario {
   id: number
-  id_condominio: number
   id_tipo_usuario: number
   nome: string
   login: string

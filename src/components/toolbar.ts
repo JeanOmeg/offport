@@ -30,7 +30,7 @@ export default defineComponent({
     }
 
     function verificaAdmin () {
-      return admin.value = (LocalStorage.getItem('id_tipo_usuario') as number) === ETipoUsuario.administrador
+      return admin.value = (LocalStorage.getItem('id_tipo_usuario') as number) === ETipoUsuario.sindico
     }
 
     const lista_menu = ref([

@@ -12,27 +12,19 @@ module.exports = {
         allowNull: false,
         autoIncrement: true
       },
-      id_condominio: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'condominio',
-          key: 'id'
-        }
-      },
-      id_morador: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'morador',
-          key: 'id'
-        }
-      },
       nome: {
         type: Sequelize.TEXT,
         allowNull: false
       },
       documento: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      morador: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      controlador: {
         type: Sequelize.TEXT,
         allowNull: false
       },
@@ -47,15 +39,14 @@ module.exports = {
         type: Sequelize.TEXT
       },
       garagem: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.INTEGER
       },
       vaga: {
         type: Sequelize.TEXT
       },
       data_entrada: {
         type: Sequelize.TEXT,
-        allowNull: false,
-        defaultValue: new Date().toLocaleString()
+        allowNull: false
       },
       data_saida: {
         type: Sequelize.TEXT

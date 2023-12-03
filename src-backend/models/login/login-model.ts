@@ -13,13 +13,6 @@ export const LoginModel = db.define<any, ILogin>(
       allowNull: false,
       autoIncrement: true
     },
-    id_condominio: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'condominio',
-        key: 'id'
-      }
-    },
     id_tipo_usuario: {
       type: DataTypes.INTEGER,
       allowNull: false,

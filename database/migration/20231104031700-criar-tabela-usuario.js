@@ -12,14 +12,6 @@ module.exports = {
         allowNull: false,
         autoIncrement: true
       },
-      id_condominio: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'condominio',
-          key: 'id'
-        }
-      },
       id_tipo_usuario: {
         type: Sequelize.INTEGER,
         allowNull: false,

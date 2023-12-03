@@ -13,5 +13,4 @@ export interface IUsuarioStorageString {
   id_usuario: string
   logado: string
   login: string
-  id_condominio: string
 }

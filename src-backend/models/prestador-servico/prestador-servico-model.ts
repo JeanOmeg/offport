@@ -13,22 +13,6 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       allowNull: false,
       autoIncrement: true
     },
-    id_condominio: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'condominio',
-        key: 'id'
-      }
-    },
-    id_morador: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'morador',
-        key: 'id'
-      }
-    },
     nome: {
       type: DataTypes.TEXT,
       allowNull: false

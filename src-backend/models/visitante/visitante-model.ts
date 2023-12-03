@@ -13,27 +13,19 @@ export const VisitanteModel = db.define<any, IVisitante>(
       allowNull: false,
       autoIncrement: true
     },
-    id_condominio: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'condominio',
-        key: 'id'
-      }
-    },
-    id_morador: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'morador',
-        key: 'id'
-      }
-    },
     nome: {
       type: DataTypes.TEXT,
       allowNull: false
     },
     documento: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    morador: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    controlador: {
       type: DataTypes.TEXT,
       allowNull: false
     },
@@ -48,15 +40,14 @@ export const VisitanteModel = db.define<any, IVisitante>(
       type: DataTypes.TEXT
     },
     garagem: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.INTEGER
     },
     vaga: {
       type: DataTypes.TEXT
     },
     data_entrada: {
       type: DataTypes.TEXT,
-      allowNull: false,
-      defaultValue: new Date().toLocaleString()
+      allowNull: false
     },
     data_saida: {
       type: DataTypes.TEXT

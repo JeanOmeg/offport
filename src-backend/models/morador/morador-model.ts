@@ -13,14 +13,6 @@ export const MoradorModel = db.define<any, IMorador>(
       allowNull: false,
       autoIncrement: true
     },
-    id_condominio: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'condominio',
-        key: 'id'
-      }
-    },
     nome: {
       type: DataTypes.TEXT,
       allowNull: false

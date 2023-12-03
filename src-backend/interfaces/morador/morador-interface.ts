@@ -1,6 +1,5 @@
 export interface IMorador {
   id: number
-  id_condominio: number
   nome: string
   apartamento: number
   bloco?: string

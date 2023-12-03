@@ -9,7 +9,6 @@ export class LoginSchema {
 
   async logarUsuario (login: IUsuario): Promise<ILogin> {
     return await LoginModel.create({
-      id_condominio: login.id_condominio,
       id_tipo_usuario: login.id_tipo_usuario,
       id_usuario: login.id,
       login: login.login

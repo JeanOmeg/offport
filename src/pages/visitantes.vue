@@ -14,12 +14,12 @@
       <q-card-section class='row col-12 q-pa-none'>
         <q-form class='col-12'>
           <div class='col-12 row justify-center items-center q-col-gutter-sm'>
-            <q-input class='column col-4' dense v-model='formulario.nome' type='text' label='Nome' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='formulario.apartamento' type='number' :counter='false' label='Apartamento' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='formulario.bloco' type='text' label='Bloco' label-color='primary' clearable />
-            <q-input class='column col-4' unmasked-value dense v-model='formulario.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable />
-            <q-input class='column col-4' dense unmasked-value v-model='formulario.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='formulario.telefone' type='text' mask='(##) ##### - ####' unmasked-value label='Telefone' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtros.nome' type='text' label='Nome' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtros.apartamento' type='number' :counter='false' label='Apartamento' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtros.bloco' type='text' label='Bloco' label-color='primary' clearable />
+            <q-input class='column col-4' unmasked-value dense v-model='filtros.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable />
+            <q-input class='column col-4' dense unmasked-value v-model='filtros.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtros.contato' type='text' mask='(##) ##### - ####' unmasked-value label='Telefone' label-color='primary' clearable />
             <div class='row col-12 justify-end q-mt-sm'>
               <q-btn class='botao q-px-none' color='primary' size='sm' type='submit'>
                 <span class='q-mr-sm'>Pesquisar</span>
@@ -43,13 +43,14 @@
       <q-card-section class='row items-center justify-center q-pa-none q-mb-sm'>
         <q-table
           bordered
+          dense
           table-header-class='text-primary'
           no-data-label='Sem dados para exibir'
           :pagination-label='getPaginationLabel'
           :class="`${$q.screen.height > 768 ? 'tabela-full-hd' : 'tabela-hd' } col-12 my-sticky-virtscroll-table`"
           rows-per-page-label='Linhas por página'
           :rows-per-page-options='[0]'
-          :rows='rows'
+          :rows='lista_visitantes'
           :columns='colunas_visitantes'
         />
       </q-card-section>
@@ -81,17 +82,17 @@
       </q-card-section>
   
       <q-card-section class='row q-pa-none'>
-        <q-form class='col-12' @submit='salvarVisitante()'>
+        <q-form class='col-12' @submit='salvarVisitante(visitante_cadastro)'>
           <div class='col-12 row justify-start items-center q-col-gutter-sm'>
             <q-input class='column col-4' dense v-model='visitante_cadastro.nome' type='text' label='Nome' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='visitante_cadastro.documento' type='text' label='Documento' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='visitante_cadastro.telefone' type='text' label='Contato' label-color='primary' clearable mask='(##) ##### - ####' unmasked-value />
+            <q-input class='column col-4' dense v-model='visitante_cadastro.contato' type='text' label='Contato' label-color='primary' clearable mask='(##) ##### - ####' unmasked-value />
             
-            <q-input class='column col-4' dense v-model='visitante_cadastro.apartamento' type='text' label='Apartamento' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='visitante_cadastro.apartamento' type='number' label='Apartamento' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='visitante_cadastro.bloco' type='text' label='Bloco' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='visitante_cadastro.garagem' type='text' label='Garagem' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='visitante_cadastro.garagem' type='number' label='Garagem' label-color='primary' clearable />
             
-            <q-input class='column col-4' dense v-model='visitante_cadastro.autorizado_por' type='text' label='Autorizado por' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='visitante_cadastro.morador' type='text' label='Autorizado por' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='visitante_cadastro.controlador' type='text' label='Controlador Responsavel' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='visitante_cadastro.vaga' type='text' label='Vaga' label-color='primary' clearable />
             

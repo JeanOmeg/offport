@@ -3,8 +3,7 @@ const tabela = 'tipo_usuario'
 
 const lista_roles = [
   { role: 'Controlador' },
-  { role: 'Sindico' },
-  { role: 'Administrador' }
+  { role: 'Sindico' }
 ]
 
 /** @type {import('sequelize-cli').Migration} */

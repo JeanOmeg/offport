@@ -13,14 +13,6 @@ export const UsuarioModel = db.define<any, IUsuario>(
       allowNull: false,
       autoIncrement: true
     },
-    id_condominio: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'condominio',
-        key: 'id'
-      }
-    },
     id_tipo_usuario: {
       type: DataTypes.INTEGER,
       allowNull: false,

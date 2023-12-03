@@ -10,29 +10,26 @@ module.exports = {
   async up (queryInterface) {
     const dados = (await queryInterface.sequelize.query(`
       SELECT
-      tipo_usuario.id AS id_tipo_usuario,
-      condominio.id AS id_condominio
+      tipo_usuario.id AS id_tipo_usuario
       FROM tipo_usuario
-      LEFT JOIN condominio ON condominio.nome = 'Condomínio'
-      WHERE tipo_usuario.role = 'Administrador'
+      WHERE tipo_usuario.role = 'Sindico'
     `))[0][0]
 
     const seedData = async () => {
       const usuario = {
-          id_condominio: dados.id_condominio,
           id_tipo_usuario:  dados.id_tipo_usuario,
-          nome: 'Administrador',
-          login: 'SuperAdmin',
+          nome: 'Sindico',
+          login: 'sindico',
           senha: await hashSenhaPadraoJs(),
-          email: 'admin@offport.com',
+          email: 'sindico@offport.com',
           telefone: 'telefone',
           endereco: 'endereco',
           bairro: 'bairro',
           cidade: 'cidade',
-          funcao: 'Administrador da Plataforma',
+          funcao: 'Sindico',
           turno: 'Seg a Sex, das 09:00 as 18:00',
           empresa: 'jeanomeg',
-          observacao: 'Usuario administrador da plataforma, responsavel por gerenciar os dados da plataforma'
+          observacao: 'Usuario administrador da plataforma, responsavel por gerenciar os dados'
         }
 
       await queryInterface.insert(null, tabela, usuario)
