@@ -27,11 +27,12 @@ export default defineComponent({
       { name: 'garagem', label: 'Garagem', align: 'left', field: (row: IVisitanteCadastro) => row.garagem },
       { name: 'vaga', label: 'Vaga', align: 'left', field: (row: IVisitanteCadastro) => row.vaga },
       { name: 'data_entrada', label: 'Data de Entrada', align: 'left', field: (row: IVisitanteCadastro) => row.data_entrada },
-      { name: 'data_saida', label: 'Data de Saída', align: 'left', field: (row: IVisitanteCadastro) => row.data_saida },
-      { name: 'observacao', label: 'Observação', align: 'left', field: (row: IVisitanteCadastro) => row.observacao }
+      { name: 'data_saida', label: 'Data de Saída', align: 'left', field: (row: IVisitanteCadastro) => row.data_saida }
     ] as IColuna[])
 
     const rows = ref([] as IVisitanteCadastro[])
+
+    const model_fake = ref('')
 
     async function salvarVisitante () {
       try {
@@ -55,6 +56,7 @@ export default defineComponent({
       popup_visitante,
       visitante_cadastro,
       editor,
+      model_fake,
       getPaginationLabel,
       dadosParaExibir,
       salvarVisitante,

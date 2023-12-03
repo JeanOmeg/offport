@@ -28,12 +28,36 @@
     </q-list>
     <q-separator v-if='verificaAdmin()' size='3px' color='dark' inset />
     <q-list class='row justify-center'>
-      <q-btn class='botao' v-if='logado' color='negative' size='sm' @click='logout(false)'>
+      <q-btn class='botao' v-if='logado' color='negative' size='sm' @click='popup_confirmar_logout = true'>
         <span class='q-mr-sm'>Sair</span>
         <q-icon name='logout' />
       </q-btn>
     </q-list>
   </q-drawer>
+
+  <q-dialog :model-value='popup_confirmar_logout' persistent>
+    <q-card class='row col-12 justify-start q-pa-none' style='width: 40%;'>
+      <q-card-section class='row col-12 text-center text-h6 text-bold text-primary justify-center items-center q-py-xs'>
+        {{ 'Deseja sair do' }} 
+        <span class='q-ml-xs'>off</span>
+        <span class='text-italic'>
+          Port
+        </span>
+        <q-icon name='home' />?
+      </q-card-section>
+      <q-card-section class='row col-12 justify-center q-pt-none q-pb-xs'>
+        <q-separator size='2px' inset color='dark' class='row col-12' />
+      </q-card-section>
+      <q-card-section class='row col-12 justify-between q-pb-md q-pt-sm'>
+        <q-btn class='botao' color='negative' size='sm' @click='popup_confirmar_logout = false'>
+          <span>Cancelar</span>
+        </q-btn>
+        <q-btn class='botao' color='dark' size='sm' @click='logout(false)'>
+          <span>Confirmar</span>
+        </q-btn>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script lang="ts">

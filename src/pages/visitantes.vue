@@ -45,7 +45,6 @@
           bordered
           table-header-class='text-primary'
           no-data-label='Sem dados para exibir'
-          dense
           :pagination-label='getPaginationLabel'
           :class="`${$q.screen.height > 768 ? 'tabela-full-hd' : 'tabela-hd' } col-12 my-sticky-virtscroll-table`"
           rows-per-page-label='Linhas por página'
@@ -83,36 +82,41 @@
   
       <q-card-section class='row q-pa-none'>
         <q-form class='col-12' @submit='salvarVisitante()'>
-          <div class='col-12 row justify-center items-center q-col-gutter-sm'>
-            <div class='row col-2 justify-start q-mt-sm'>
-              <q-btn class='q-mr-sm botao' color='negative' size='sm' type='button' @click='fecharModal()'>
-                <span class='q-mr-sm'>Fechar</span>
-                <q-icon name='logout' />
-              </q-btn>
-            </div>
+          <div class='col-12 row justify-start items-center q-col-gutter-sm'>
             <q-input class='column col-4' dense v-model='visitante_cadastro.nome' type='text' label='Nome' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='visitante_cadastro.documento' type='text' label='Documento' label-color='primary' clearable />
-            <div class='row col-2 justify-end q-mt-sm'>
-              <q-btn class='botao' color='primary' size='sm' type='submit'>
-                <span class='q-mr-sm'>Salvar</span>
-                <q-icon name='save' />
-              </q-btn>
-            </div>
-
             <q-input class='column col-4' dense v-model='visitante_cadastro.telefone' type='text' label='Contato' label-color='primary' clearable mask='(##) ##### - ####' unmasked-value />
+            
             <q-input class='column col-4' dense v-model='visitante_cadastro.apartamento' type='text' label='Apartamento' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='visitante_cadastro.bloco' type='text' label='Bloco' label-color='primary' clearable />
-            
             <q-input class='column col-4' dense v-model='visitante_cadastro.garagem' type='text' label='Garagem' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='visitante_cadastro.vaga' type='text' label='Vaga' label-color='primary' clearable />
+            
             <q-input class='column col-4' dense v-model='visitante_cadastro.autorizado_por' type='text' label='Autorizado por' label-color='primary' clearable />
-
-            <q-input class='column col-4' unmasked-value dense v-model='visitante_cadastro.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable />
-            <q-input class='column col-4' dense unmasked-value v-model='visitante_cadastro.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='visitante_cadastro.controlador' type='text' label='Controlador Responsavel' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='visitante_cadastro.vaga' type='text' label='Vaga' label-color='primary' clearable />
+            
+            <q-input class='column col-4' unmasked-value dense v-model='visitante_cadastro.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='model_fake' type='text' label='Adicione suas observações no editor' label-color='primary' readonly />
+            <q-input class='column col-4' dense unmasked-value v-model='visitante_cadastro.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
 
             <div class='col-12 q-mt-md'>
-              <q-editor v-model='editor' min-height='295px' max-height='295px' placeholder='Observações' dense />
+              <q-editor v-model='editor' :class="`${$q.screen.height > 768 ? 'editor-full-hd' : 'editor-hd' }`" dense />
+            </div>
+
+            <div class='row col-12 q-mt-sm justify-between'>
+              <div class='row col-2 justify-start'>
+                <q-btn class='q-mr-sm botao' color='negative' size='sm' type='button' @click='fecharModal()'>
+                  <span class='q-mr-sm'>Fechar</span>
+                  <q-icon name='logout' />
+                </q-btn>
+              </div>
+  
+              <div class='row col-2 justify-end'>
+                <q-btn class='botao' color='primary' size='sm' type='submit'>
+                  <span class='q-mr-sm'>Salvar</span>
+                  <q-icon name='save' />
+                </q-btn>
+              </div>
             </div>
           </div>
         </q-form>

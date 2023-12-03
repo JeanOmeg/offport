@@ -22,6 +22,7 @@ export default defineComponent({
     const logado = ref(false)
     const admin = ref(false)
     const $q = useQuasar()
+    const popup_confirmar_logout = ref(false)
 
     async function logout (_logado?: boolean, _sair?: boolean) {
       logado.value = LocalStorage.getItem('logado') as boolean
@@ -58,6 +59,7 @@ export default defineComponent({
       admin,
       router,
       pagina,
+      popup_confirmar_logout,
       logout,
       removeLoginStorage,
       verificaAdmin
