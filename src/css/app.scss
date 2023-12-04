@@ -7,7 +7,7 @@
 }
 
 .botao {
-  width: 100px !important;
+  width: 130px !important;
 }
 
 .aviso {
@@ -49,39 +49,55 @@
 }
 
 .tela-full-hd {
-  min-height: 690px !important;
-  max-height: 690px !important;
+  min-height: 700px !important;
+  max-height: 700px !important;
 }
 
 .tela-hd {
-  min-height: 590px !important;
-  max-height: 590px !important;
+  min-height: 600px !important;
+  max-height: 600px !important;
 }
 
 .tabela-full-hd {
-  min-height: 450px !important;
-  max-height: 450px !important;
+  min-height: 440px !important;
+  max-height: 440px !important;
 }
 
 .tabela-hd {
-  min-height: 360px !important;
-  max-height: 360px !important;
+  min-height: 350px !important;
+  max-height: 350px !important;
 }
 
 .editor-full-hd {
-  min-height: 360px !important; 
-  max-height: 360px !important;
+  min-height: 370px !important; 
+  max-height: 370px !important;
 }
 
 .editor-hd {
-  min-height: 280px !important; 
-  max-height: 280px !important;
+  min-height: 270px !important; 
+  max-height: 270px !important;
 }
 
 .pm-none {
   padding: 0;
   margin: 0;
 }
+
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 10px !important;
+
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $negative;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $dark;
+}
+
 
 input[type="number"] {
   appearance: textfield !important;

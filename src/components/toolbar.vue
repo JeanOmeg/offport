@@ -28,9 +28,9 @@
     </q-list>
     <q-separator v-if='verificaAdmin()' size='3px' color='dark' inset />
     <q-list class='row justify-center'>
-      <q-btn class='botao' v-if='logado' color='negative' size='sm' @click='popup_confirmar_logout = true'>
-        <span class='q-mr-sm'>Sair</span>
-        <q-icon name='logout' />
+      <q-btn class='botao row col-12 justify-between q-px-none q-mx-none' v-if='logado' color='negative' size='md' @click='popup_confirmar_logout = true'>
+        <span class='column items-start col-5'>Sair</span>
+        <q-icon class='column items-end col-5' name='logout' />
       </q-btn>
     </q-list>
   </q-drawer>
@@ -49,10 +49,10 @@
         <q-separator size='2px' inset color='dark' class='row col-12' />
       </q-card-section>
       <q-card-section class='row col-12 justify-between q-pb-md q-pt-sm'>
-        <q-btn class='botao' color='negative' size='sm' @click='popup_confirmar_logout = false'>
+        <q-btn class='botao' color='negative' size='md' @click='popup_confirmar_logout = false'>
           <span>Cancelar</span>
         </q-btn>
-        <q-btn class='botao' color='dark' size='sm' @click='logout(false)'>
+        <q-btn class='botao' color='dark' size='md' @click='logout(false)'>
           <span>Confirmar</span>
         </q-btn>
       </q-card-section>

@@ -21,7 +21,7 @@
             <q-input class='column col-4' dense unmasked-value v-model='filtros.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='filtros.contato' type='text' mask='(##) ##### - ####' unmasked-value label='Telefone' label-color='primary' clearable />
             <div class='row col-12 justify-end q-mt-sm'>
-              <q-btn class='botao q-px-none' color='primary' size='sm' type='submit'>
+              <q-btn class='botao q-px-none' color='primary' size='md' type='submit'>
                 <span class='q-mr-sm'>Pesquisar</span>
                 <q-icon name='search' />
               </q-btn>
@@ -107,14 +107,14 @@
 
             <div class='row col-12 q-mt-sm justify-between'>
               <div class='row col-2 justify-start'>
-                <q-btn class='q-mr-sm botao' color='negative' size='sm' type='button' @click='fecharModal()'>
+                <q-btn class='q-mr-sm botao' color='negative' size='md' type='button' @click='fecharModal()'>
                   <span class='q-mr-sm'>Fechar</span>
                   <q-icon name='logout' />
                 </q-btn>
               </div>
   
               <div class='row col-2 justify-end'>
-                <q-btn class='botao' color='primary' size='sm' type='submit'>
+                <q-btn class='botao' color='primary' size='md' type='submit'>
                   <span class='q-mr-sm'>Salvar</span>
                   <q-icon name='save' />
                 </q-btn>
@@ -127,31 +127,33 @@
   </q-dialog>
 
   <q-dialog v-model='popup_tabela'>
-    <q-card class='row col-12 justify-center' style='width: 250px;'>
-      <q-card-actions class='row col-12 justify-center q-pb-xs q-pt-none'>
+    <q-card class='row col-12 justify-center' style='min-width: 50%;'>
+      <q-card-actions class='row col-12 justify-center q-pb-xs q-pt-sm'>
         <div class='q-py-none q-my-none text-h6 text-bold text-center text-primary'>
-          Escolha a ação desejada
+          {{ `Visitante Selecionado: ${visitante_selecionado.nome}` }}
         </div>
       </q-card-actions>
       <q-separator class='column col justify-center q-mb-sm' color='dark' size='2px' inset />
-      <q-card-actions class='row col-12 justify-center q-py-none'>
-        <q-btn class='row col-12 justify-between botao' color='dark' size='sm' @click='fecharDialog'>
-          <span class='column col items-start'>Visualizar</span>
-          <q-icon class='column col items-end' name='visibility' />
-        </q-btn>
-      </q-card-actions>
-      <q-card-actions class='row col-12 justify-center q-py-sm'>
-        <q-btn class='row col-12 justify-between botao' color='dark' size='sm' @click='fecharDialog'>
-          <span class='column col items-start'>Editar</span>
-          <q-icon class='column col items-end' name='edit' />
-        </q-btn>
-      </q-card-actions>
-      <q-card-actions class='row col-12 justify-center q-pt-none'>
-        <q-btn class='row col-12 justify-between botao' color='negative' size='sm' @click='fecharDialog'>
-          <span class='column col items-start'>Deletar</span>
-          <q-icon class='column col items-end' name='delete' />
-        </q-btn>
-      </q-card-actions>
+      <div class='row col-12 justify-between q-pb-sm'>
+        <q-card-actions class='row col-3 justify-center q-py-sm'>
+          <q-btn class='row col-12 justify-between botao' color='negative' size='md' @click='fecharDialog'>
+            <span class='column col items-start'>Deletar</span>
+            <q-icon class='column col items-end' name='delete' />
+          </q-btn>
+        </q-card-actions>
+        <q-card-actions class='row col-3 justify-center q-py-sm'>
+          <q-btn class='row col-12 justify-between botao' color='dark' size='md' @click='fecharDialog'>
+            <span class='column col items-start'>Editar</span>
+            <q-icon class='column col items-end' name='edit' />
+          </q-btn>
+        </q-card-actions>
+        <q-card-actions class='row col-3 justify-center q-py-sm'>
+          <q-btn class='row col-12 justify-between botao' color='dark' size='md' @click='fecharDialog'>
+            <span class='column col items-start'>Visualizar</span>
+            <q-icon class='column col items-end' name='visibility' />
+          </q-btn>
+        </q-card-actions>
+      </div>
     </q-card>
   </q-dialog>
 </template>
