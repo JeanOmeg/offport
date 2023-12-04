@@ -22,6 +22,8 @@ export default defineComponent({
     const editor = ref('')
     const lista_visitantes = ref([] as IVisitante[])
     const model_fake = ref('')
+    const popup_tabela = ref(false)
+    const visitante_selecionado = ref({} as IVisitante)
 
     const colunas_visitantes = ref([
       { name: 'nome', required: true, label: 'Nome', align: 'left', field: (row: IVisitante) => row.nome, format: val => `${val}`, sortable: true },
@@ -38,7 +40,6 @@ export default defineComponent({
     
     async function salvarVisitante (visitante: IVisitante) {
       try {
-        console.log(visitante)
         visitante.observacao = editor.value
         await visitanteSalvarService(visitante)
         fecharModal()
@@ -52,7 +53,6 @@ export default defineComponent({
     async function listarTodosVisitantes () {
       try {
         lista_visitantes.value = await visitanteListarTodosService()
-        console.log(lista_visitantes.value)
       } catch (error) {
         $q.notify({ message: 'Erro ao carregar Visitantes', icon: 'error', color: 'negative' })
       }
@@ -64,6 +64,16 @@ export default defineComponent({
       visitante_cadastro.value = {} as IVisitante
     }
 
+    function abrirCaixaDialog (row: IVisitante) {
+      popup_tabela.value = true
+      visitante_selecionado.value = row
+    }
+
+    function fecharDialog () {
+      popup_tabela.value = false
+      visitante_selecionado.value
+    }
+
     return {
       colunas_visitantes,
       lista_visitantes,
@@ -72,11 +82,15 @@ export default defineComponent({
       visitante_cadastro,
       editor,
       model_fake,
+      popup_tabela,
+      visitante_selecionado,
       getPaginationLabel,
       dadosParaExibir,
       salvarVisitante,
       fecharModal,
-      listarTodosVisitantes
+      listarTodosVisitantes,
+      abrirCaixaDialog,
+      fecharDialog
     }
   }
 })

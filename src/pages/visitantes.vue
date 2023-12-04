@@ -46,6 +46,7 @@
           dense
           table-header-class='text-primary'
           no-data-label='Sem dados para exibir'
+          @row-click='(evt, row: IVisitante, index) => { abrirCaixaDialog(row)}'
           :pagination-label='getPaginationLabel'
           :class="`${$q.screen.height > 768 ? 'tabela-full-hd' : 'tabela-hd' } col-12 my-sticky-virtscroll-table`"
           rows-per-page-label='Linhas por página'
@@ -124,9 +125,40 @@
       </q-card-section>
     </q-card>
   </q-dialog>
+
+  <q-dialog v-model='popup_tabela'>
+    <q-card class='row col-12 justify-center' style='width: 250px;'>
+      <q-card-actions class='row col-12 justify-center q-pb-xs q-pt-none'>
+        <div class='q-py-none q-my-none text-h6 text-bold text-center text-primary'>
+          Escolha a ação desejada
+        </div>
+      </q-card-actions>
+      <q-separator class='column col justify-center q-mb-sm' color='dark' size='2px' inset />
+      <q-card-actions class='row col-12 justify-center q-py-none'>
+        <q-btn class='row col-12 justify-between botao' color='dark' size='sm' @click='fecharDialog'>
+          <span class='column col items-start'>Visualizar</span>
+          <q-icon class='column col items-end' name='visibility' />
+        </q-btn>
+      </q-card-actions>
+      <q-card-actions class='row col-12 justify-center q-py-sm'>
+        <q-btn class='row col-12 justify-between botao' color='dark' size='sm' @click='fecharDialog'>
+          <span class='column col items-start'>Editar</span>
+          <q-icon class='column col items-end' name='edit' />
+        </q-btn>
+      </q-card-actions>
+      <q-card-actions class='row col-12 justify-center q-pt-none'>
+        <q-btn class='row col-12 justify-between botao' color='negative' size='sm' @click='fecharDialog'>
+          <span class='column col items-start'>Deletar</span>
+          <q-icon class='column col items-end' name='delete' />
+        </q-btn>
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { IVisitante } from 'app/src-backend/interfaces/visitante/visitante-interface'
 import visitantes from 'src/pages/visitantes'
 export default visitantes
 </script>
