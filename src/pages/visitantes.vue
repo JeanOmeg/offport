@@ -126,31 +126,39 @@
     </q-card>
   </q-dialog>
 
-  <q-dialog v-model='popup_tabela'>
-    <q-card class='row col-12 justify-center' style='min-width: 50%;'>
-      <q-card-actions class='row col-12 justify-center q-pb-xs q-pt-sm'>
-        <div class='q-py-none q-my-none text-h6 text-bold text-center text-primary'>
-          {{ `Visitante Selecionado: ${visitante_selecionado.nome}` }}
+  <q-dialog v-model='popup_tabela' persistent>
+    <q-card class='row col-12 justify-center items-center' style='width: 25%;'>
+      <q-card-actions class='column col-12 items-end q-pt-sm q-pb-none'>
+        <q-btn color='negative' round size='xs' @click='fecharDialog' icon='close' />
+      </q-card-actions>
+
+      <q-card-actions class='row col-12 justify-center items-center q-pb-none'>
+        <q-separator class='row col-12' inset size='2px' color='dark' />
+      </q-card-actions>
+
+      <q-card-actions class='column col-12 items-center justify-center q-py-none'>
+        <div class='text-subtitle1 text-bold text-primary'>
+          {{ `Visitante: ${visitante_selecionado.nome}` }}
         </div>
       </q-card-actions>
-      <q-separator class='column col justify-center q-mb-sm' color='dark' size='2px' inset />
-      <div class='row col-12 justify-between q-pb-sm'>
-        <q-card-actions class='row col-3 justify-center q-py-sm'>
-          <q-btn class='row col-12 justify-between botao' color='negative' size='md' @click='fecharDialog'>
-            <span class='column col items-start'>Deletar</span>
-            <q-icon class='column col items-end' name='delete' />
+
+      <div class='column col-12 q-my-none'>
+        <q-card-actions class='column col-12 q-pt-none'>
+          <q-btn class='botao' color='dark' size='md' @click='fecharDialog'>
+            <span class='column col items-start'>Visualizar</span>
+            <q-icon class='column col items-end' name='visibility' />
           </q-btn>
         </q-card-actions>
-        <q-card-actions class='row col-3 justify-center q-py-sm'>
-          <q-btn class='row col-12 justify-between botao' color='dark' size='md' @click='fecharDialog'>
+        <q-card-actions class='column col-12 q-pt-none'>
+          <q-btn class='botao' color='dark' size='md' @click='fecharDialog'>
             <span class='column col items-start'>Editar</span>
             <q-icon class='column col items-end' name='edit' />
           </q-btn>
         </q-card-actions>
-        <q-card-actions class='row col-3 justify-center q-py-sm'>
-          <q-btn class='row col-12 justify-between botao' color='dark' size='md' @click='fecharDialog'>
-            <span class='column col items-start'>Visualizar</span>
-            <q-icon class='column col items-end' name='visibility' />
+        <q-card-actions class='column col-12 q-pt-none'>
+          <q-btn class='botao' color='negative' size='md' @click='fecharDialog'>
+            <span class='column col items-start'>Deletar</span>
+            <q-icon class='column col items-end' name='delete' />
           </q-btn>
         </q-card-actions>
       </div>
