@@ -21,10 +21,7 @@
             <q-input class='column col-4' dense unmasked-value v-model='filtros.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='filtros.contato' type='text' mask='(##) ##### - ####' unmasked-value label='Telefone' label-color='primary' clearable />
             <div class='row col-12 justify-end q-mt-sm'>
-              <q-btn class='botao q-px-none' color='primary' size='md' type='submit'>
-                <span class='q-mr-sm'>Pesquisar</span>
-                <q-icon name='search' />
-              </q-btn>
+              <q-btn class='botao q-px-none' color='primary' size='md' label='Pesquisar' type='submit' icon-right='search' />
             </div>
           </div>
         </q-form>
@@ -43,7 +40,6 @@
       <q-card-section class='row items-center justify-center q-pa-none q-mb-sm'>
         <q-table
           bordered
-          dense
           table-header-class='text-primary'
           no-data-label='Sem dados para exibir'
           @row-click='(evt, row: IVisitante, index) => { abrirCaixaDialog(row)}'
@@ -58,7 +54,7 @@
     </q-card>
   </q-page>
 
-  <q-page-sticky position='bottom-right' :offset='[10, 5]'>
+  <q-page-sticky position='bottom-right' :offset='[15, 10]'>
     <q-fab
       vertical-actions-align='right'
       padding='sm'
@@ -66,12 +62,15 @@
       direction='up'
       color='dark'
     >
-      <q-fab-action @click='popup_visitante = true' color='primary' label='Visitante' label-position='left' icon='person_add' padding='5px' square type='button' />
+      <q-fab-action @click='popup_visitante = true' color='primary' label='Visitante' label-position='left' icon='person_add' padding='10px' label-style='font-size: 16px' square type='button' />
     </q-fab>
   </q-page-sticky>
 
   <q-dialog v-model='popup_visitante' persistent>
-    <q-card class='col-12 q-pa-md items-center justify-between dialog-width dialog-height'>
+    <q-card class='col-12 row q-pa-sm items-center justify-center dialog-width dialog-height'>
+      <div class='row col-12 justify-end q-mb-none'>
+        <q-btn color='negative' round size='sm' type='button' icon='close' @click='fecharModal()' />
+      </div>
       <q-card-section class='row col-12 items-center justify-center q-pa-none'>
         <q-separator class='col' size='2px' color='primary' />
         <div class='text-center text-bold text-primary'>
@@ -105,20 +104,8 @@
               <q-editor v-model='editor' :class="`${$q.screen.height > 768 ? 'editor-full-hd' : 'editor-hd' }`" dense />
             </div>
 
-            <div class='row col-12 q-mt-sm justify-between'>
-              <div class='row col-2 justify-start'>
-                <q-btn class='q-mr-sm botao' color='negative' size='md' type='button' @click='fecharModal()'>
-                  <span class='q-mr-sm'>Fechar</span>
-                  <q-icon name='logout' />
-                </q-btn>
-              </div>
-  
-              <div class='row col-2 justify-end'>
-                <q-btn class='botao' color='primary' size='md' type='submit'>
-                  <span class='q-mr-sm'>Salvar</span>
-                  <q-icon name='save' />
-                </q-btn>
-              </div>
+            <div class='row col-12 q-mt-sm justify-end'>
+              <q-btn color='primary' size='md' type='submit' label='Salvar' icon-right='save' />
             </div>
           </div>
         </q-form>
@@ -129,33 +116,33 @@
   <q-dialog v-model='popup_tabela' persistent>
     <q-card class='row col-12 justify-center items-center' style='width: 25%;'>
       <q-card-actions class='column col-12 items-end q-pt-sm q-pb-none'>
-        <q-btn color='negative' round size='xs' @click='fecharDialog' icon='close' />
+        <q-btn color='negative' round size='sm' @click='fecharDialog' icon='close' />
       </q-card-actions>
 
-      <q-card-actions class='row col-12 justify-center items-center q-pb-none'>
+      <q-card-actions class='row col-12 justify-center items-center q-py-sm'>
         <q-separator class='row col-12' inset size='2px' color='dark' />
       </q-card-actions>
 
-      <q-card-actions class='column col-12 items-center justify-center q-py-none'>
+      <q-card-actions class='column col-12 items-center justify-center q-py-sm'>
         <div class='text-subtitle1 text-bold text-primary'>
           {{ `Visitante: ${visitante_selecionado.nome}` }}
         </div>
       </q-card-actions>
 
-      <div class='column col-12 q-my-none'>
+      <div class='column col-12 q-mt-none q-mb-sm'>
         <q-card-actions class='column col-12 q-pt-none'>
           <q-btn class='botao' color='dark' size='md' @click='fecharDialog'>
             <span class='column col items-start'>Visualizar</span>
             <q-icon class='column col items-end' name='visibility' />
           </q-btn>
         </q-card-actions>
-        <q-card-actions class='column col-12 q-pt-none'>
+        <q-card-actions class='column col-12 q-pt-sm'>
           <q-btn class='botao' color='dark' size='md' @click='fecharDialog'>
             <span class='column col items-start'>Editar</span>
             <q-icon class='column col items-end' name='edit' />
           </q-btn>
         </q-card-actions>
-        <q-card-actions class='column col-12 q-pt-none'>
+        <q-card-actions class='column col-12 q-pt-sm'>
           <q-btn class='botao' color='negative' size='md' @click='fecharDialog'>
             <span class='column col items-start'>Deletar</span>
             <q-icon class='column col items-end' name='delete' />

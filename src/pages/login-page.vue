@@ -15,10 +15,10 @@
           </span>
         </div>
         <span class='text-h6 text-primary text-bold'>Solução completa e offline para seu condomínio</span>
-        <q-input filled dense v-model='formulario.login' type='text' label='Login' label-color='primary' bg-color='info' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
-        <q-input filled dense v-model='formulario.senha' type='password' label='Senha' label-color='primary' bg-color='info' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de senha corretamente!']" />
+        <q-input filled dense v-model='formulario.login' type='text' label='Login' label-color='primary' bg-color='white' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de login corretamente!']" />
+        <q-input filled dense v-model='formulario.senha' type='password' label='Senha' label-color='primary' bg-color='white' :rules="[ (val) => val && val.length > 0 && val.length < 40 || 'Preencha o campo de senha corretamente!']" />
         <div class='row justify-center'>
-          <q-btn class='botao' label='Acessar' color='primary' type='submit' size='md' />
+          <q-btn class='botao' label='Login' color='primary' type='submit' size='md' icon-right='login' />
         </div>
       </q-form>
     </div>
