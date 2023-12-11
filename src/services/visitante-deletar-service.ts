@@ -1,8 +1,8 @@
 import { api } from 'boot/axios'
 
-export default async function visitanteDeletarService (id: number): Promise<void> {
+export default async function visitanteDeletarService (id: number) {
   try {
-    await api.delete(`visitante/deletar/${id}`)
+    return await api.delete(`visitante/deletar/${id}`)
   } catch (error) {
     console.log(error)
   }

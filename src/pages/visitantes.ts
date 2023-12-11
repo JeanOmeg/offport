@@ -15,17 +15,6 @@ export default defineComponent({
     this.dadosParaExibir()
   },
 
-  watch: {
-    'atualizar_lista_visitante': {
-      async handler (newValue) {
-        if (newValue) {
-          this.atualizar_lista_visitante = false
-          await this.listarTodosVisitantes()
-        }
-      }
-    }
-  },
-
   setup () {
     const filtros = ref({} as IVisitante)
     const visitante_cadastro = ref({} as IVisitante)
@@ -36,7 +25,6 @@ export default defineComponent({
     const model_fake = ref('')
     const popup_tabela = ref(false)
     const visitante_selecionado = ref({} as IVisitante)
-    const atualizar_lista_visitante = ref(false)
 
     const colunas_visitantes = ref([
       { name: 'nome', required: true, label: 'Nome', align: 'left', field: (row: IVisitante) => row.nome, format: val => `${val}`, sortable: true },
@@ -53,11 +41,11 @@ export default defineComponent({
     
     async function salvarVisitante (visitante: IVisitante) {
       try {
+        $q.notify({ message: 'Visitante salvo com sucesso!', icon: 'check', color: 'positive' })
         visitante.observacao = editor.value
         await visitanteSalvarService(visitante)
         fecharModal()
         await listarTodosVisitantes()
-        $q.notify({ message: 'Visitante salvo com sucesso!', icon: 'check', color: 'positive' })
       } catch (error) {
         $q.notify({ message: 'Erro ao salvar Visitante', icon: 'error', color: 'negative' })
       }
@@ -65,7 +53,9 @@ export default defineComponent({
 
     async function listarTodosVisitantes () {
       try {
-        lista_visitantes.value = await visitanteListarTodosService()
+        setTimeout(async () => {
+          lista_visitantes.value = await visitanteListarTodosService()
+        }, 200)
       } catch (error) {
         $q.notify({ message: 'Erro ao carregar Visitantes', icon: 'error', color: 'negative' })
       }
@@ -73,12 +63,14 @@ export default defineComponent({
 
     async function deletarVisitante (id: number) {
       try {
-        fecharDialog()
-        atualizar_lista_visitante.value = true
         $q.notify({ message: 'Visitante deletado com sucesso!', icon: 'error', color: 'positive' })
-        await visitanteDeletarService(id)
+        setTimeout(async () => {
+          await visitanteDeletarService(id)
+        }, 200)
+        fecharDialog()
+        await listarTodosVisitantes()
       } catch (error) {
-        console.log(error)
+        $q.notify({ message: 'Erro ao deletar Visitantes', icon: 'error', color: 'negative' })
       }
     }
 
@@ -108,7 +100,6 @@ export default defineComponent({
       model_fake,
       popup_tabela,
       visitante_selecionado,
-      atualizar_lista_visitante,
       getPaginationLabel,
       dadosParaExibir,
       salvarVisitante,
