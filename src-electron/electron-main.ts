@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron'
+import { app, BrowserWindow } from 'electron'
 import * as path from 'path'
 import * as os from 'os'
 
@@ -27,9 +27,7 @@ function createWindow () {
   })
 
   mainWindow.on('ready-to-show', () => {
-    const { width, height } = screen.getPrimaryDisplay().workAreaSize
     mainWindow?.setMinimumSize(1280, 720)
-    mainWindow?.setMaximumSize(width, height)
   })
 
   mainWindow.on('closed', () => {

@@ -5,13 +5,25 @@ import { useQuasar } from 'quasar'
 import { IVisitante } from 'app/src-backend/interfaces/visitante/visitante-interface'
 import visitanteSalvarService from 'src/services/visitante-salvar-service'
 import visitanteListarTodosService from 'src/services/visitante-listar-todos-service'
+import visitanteDeletarService from 'src/services/visitante-deletar-service'
 
 export default defineComponent({
   name: 'visitantes',
 
   async mounted () {
-    this.dadosParaExibir()
     await this.listarTodosVisitantes()
+    this.dadosParaExibir()
+  },
+
+  watch: {
+    'atualizar_lista_visitante': {
+      async handler (newValue) {
+        if (newValue) {
+          this.atualizar_lista_visitante = false
+          await this.listarTodosVisitantes()
+        }
+      }
+    }
   },
 
   setup () {
@@ -24,6 +36,7 @@ export default defineComponent({
     const model_fake = ref('')
     const popup_tabela = ref(false)
     const visitante_selecionado = ref({} as IVisitante)
+    const atualizar_lista_visitante = ref(false)
 
     const colunas_visitantes = ref([
       { name: 'nome', required: true, label: 'Nome', align: 'left', field: (row: IVisitante) => row.nome, format: val => `${val}`, sortable: true },
@@ -58,6 +71,17 @@ export default defineComponent({
       }
     }
 
+    async function deletarVisitante (id: number) {
+      try {
+        fecharDialog()
+        atualizar_lista_visitante.value = true
+        $q.notify({ message: 'Visitante deletado com sucesso!', icon: 'error', color: 'positive' })
+        await visitanteDeletarService(id)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     function fecharModal () {
       popup_visitante.value = false
       editor.value = ''
@@ -71,7 +95,7 @@ export default defineComponent({
 
     function fecharDialog () {
       popup_tabela.value = false
-      visitante_selecionado.value
+      visitante_selecionado.value = {} as IVisitante
     }
 
     return {
@@ -84,13 +108,15 @@ export default defineComponent({
       model_fake,
       popup_tabela,
       visitante_selecionado,
+      atualizar_lista_visitante,
       getPaginationLabel,
       dadosParaExibir,
       salvarVisitante,
       fecharModal,
       listarTodosVisitantes,
       abrirCaixaDialog,
-      fecharDialog
+      fecharDialog,
+      deletarVisitante
     }
   }
 })

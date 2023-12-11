@@ -22,7 +22,7 @@
         </div>
       </q-form>
     </div>
-    <div class='row justify-center items-center aviso max-width-100'>
+    <div class='row justify-center items-center aviso'>
       <div class='text-center text-h6 text-primary max-width-100'>
         <span>Venda proibida!</span>
       </div>

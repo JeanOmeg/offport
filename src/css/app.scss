@@ -1,3 +1,5 @@
+// UTILS
+
 .body--light {
   background-color: #e1f4ff;
 }
@@ -24,60 +26,6 @@
   max-width: 100% !important;
 }
 
-.max-height-100 {
-  min-height: 100% !important;
-  max-height: 100% !important;
-}
-
-.dialog-width {
-  min-width: 60% !important;
-  max-width: 60% !important;
-}
-
-.dialog-height {
-  min-height: 90% !important;
-  max-height: 90% !important;
-}
-
-.max-width-95 {
-  max-width: 90% !important;
-}
-
-.filtro {
-  min-height: 100px !important;
-  max-height: 100px !important;
-}
-
-.tela-full-hd {
-  min-height: 700px !important;
-  max-height: 700px !important;
-}
-
-.tela-hd {
-  min-height: 600px !important;
-  max-height: 600px !important;
-}
-
-.tabela-full-hd {
-  min-height: 460px !important;
-  max-height: 460px !important;
-}
-
-.tabela-hd {
-  min-height: 350px !important;
-  max-height: 350px !important;
-}
-
-.editor-full-hd {
-  min-height: 320px !important; 
-  max-height: 320px !important;
-}
-
-.editor-hd {
-  min-height: 270px !important; 
-  max-height: 270px !important;
-}
-
 .pm-none {
   padding: 0;
   margin: 0;
@@ -85,14 +33,19 @@
 
 *::-webkit-scrollbar {
   width: 5px !important;
+  height: 5px !important;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: $negative;
+  width: 5px !important;
+  height: 5px !important;
 }
 
 *::-webkit-scrollbar-track {
   background: $dark;
+  width: 5px !important;
+  height: 5px !important;
 }
 
 input[type="number"] {
@@ -103,4 +56,56 @@ input[type="number"] {
     -webkit-appearance: none !important;
     margin: 0 !important;
   }
+}
+
+// CARDS
+
+.card-princial {
+  min-height: 88vh !important;
+  max-height: 88vh !important;
+}
+
+.tabela-1200 {
+  min-height: 65vh !important;
+  max-height: 65vh !important;
+}
+
+.tabela-1080 {
+  min-height: 56vh !important;
+  max-height: 56vh !important;
+}
+
+.tabela-720 {
+  min-height: 52vh !important;
+  max-height: 52vh !important;
+}
+
+.dialog-width {
+  min-width: 70% !important;
+  max-width: 70% !important;
+}
+
+.dialog-height-1200 {
+  min-height: 65% !important;
+  max-height: 65% !important;
+}
+
+.dialog-height-1080 {
+  min-height: 90% !important;
+  max-height: 90% !important;
+}
+
+.dialog-height-720 {
+  min-height: 95% !important;
+  max-height: 95% !important;
+}
+
+.editor-full-hd {
+  min-height: 320px !important; 
+  max-height: 320px !important;
+}
+
+.editor-hd {
+  min-height: 270px !important; 
+  max-height: 270px !important;
 }

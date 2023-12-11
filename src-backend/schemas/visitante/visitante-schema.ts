@@ -17,6 +17,14 @@ export class VisitanteSchema {
       raw: true
     })
   }
+
+  async deletarVisitante (id: number) {
+    return await VisitanteModel.destroy({
+      where: {
+        id: id
+      }
+    })
+  }
 }
 
 export const visitante_schema = new VisitanteSchema()
