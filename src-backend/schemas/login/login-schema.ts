@@ -1,5 +1,4 @@
 import { IUsuario } from 'app/src-backend/interfaces/usuario/usuario-interface'
-import { ILogin } from '../../interfaces/login/login-interface'
 import { LoginModel } from '../../models/login/login-model'
 
 export class LoginSchema {
@@ -7,7 +6,7 @@ export class LoginSchema {
     return LoginModel
   }
 
-  async logarUsuario (login: IUsuario): Promise<ILogin> {
+  async logarUsuario (login: IUsuario): Promise<any> {
     return await LoginModel.create({
       id_tipo_usuario: login.id_tipo_usuario,
       id_usuario: login.id,

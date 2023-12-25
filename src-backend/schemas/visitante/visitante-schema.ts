@@ -12,6 +12,17 @@ export class VisitanteSchema {
     return await VisitanteModel.create(dados_criação)
   }
 
+  async editarVisitante (dados_criacao): Promise<IVisitante> {
+    const [, visitante] = await VisitanteModel.update(dados_criacao, {
+      where: {
+        id: dados_criacao.id
+      },
+      returning: true
+    })
+  
+    return visitante[0] as IVisitante
+  }
+
   async listarTodos (): Promise<IVisitante[]> {
     return await VisitanteModel.findAll({
       raw: true

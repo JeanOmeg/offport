@@ -1,7 +1,7 @@
 import { defineComponent, ref } from 'vue'
 import { IColuna } from 'src/interfaces/coluna-interface'
 import { dadosParaExibir, getPaginationLabel } from 'src/utils/tabela-util'
-import { useQuasar } from 'quasar'
+import { Loading, useQuasar } from 'quasar'
 import { IVisitante } from 'app/src-backend/interfaces/visitante/visitante-interface'
 import visitanteSalvarService from 'src/services/visitante-salvar-service'
 import visitanteListarTodosService from 'src/services/visitante-listar-todos-service'
@@ -11,8 +11,10 @@ export default defineComponent({
   name: 'visitantes',
 
   async mounted () {
+    Loading.show()
     await this.listarTodosVisitantes()
     this.dadosParaExibir()
+    Loading.hide()
   },
 
   watch: {
@@ -22,7 +24,6 @@ export default defineComponent({
           this.visitante_cadastro.vaga = ''
         }
       }
-      
     }
   },
 
@@ -53,15 +54,16 @@ export default defineComponent({
     ] as IColuna[])
     
     async function salvarVisitante (visitante: IVisitante) {
+      Loading.show()
       try {
-        $q.notify({ message: 'Visitante salvo com sucesso!', icon: 'check', color: 'positive' })
         visitante.observacao = editor.value
-        console.log(visitante.data_entrada)
         await visitanteSalvarService(visitante)
-        fecharModal()
-        await listarTodosVisitantes()
+        await fecharModal()
+        $q.notify({ message: 'Visitante salvo com sucesso!', icon: 'check', color: 'positive' })
       } catch (error) {
         $q.notify({ message: 'Erro ao salvar Visitante', icon: 'error', color: 'negative' })
+      } finally {
+        Loading.hide()
       }
     }
 
@@ -77,22 +79,22 @@ export default defineComponent({
 
     async function deletarVisitante (id: number) {
       try {
-        $q.notify({ message: 'Visitante deletado com sucesso!', icon: 'error', color: 'positive' })
         setTimeout(async () => {
           await visitanteDeletarService(id)
         }, 200)
-        fecharDialog()
-        await listarTodosVisitantes()
+        await fecharDialog()
+        $q.notify({ message: 'Visitante deletado com sucesso!', icon: 'error', color: 'positive' })
       } catch (error) {
         $q.notify({ message: 'Erro ao deletar Visitantes', icon: 'error', color: 'negative' })
       }
     }
 
-    function fecharModal () {
+    async function fecharModal () {
       popup_visitante.value = false
       editor.value = ''
       visualizar.value = false
       visitante_cadastro.value = {} as IVisitante
+      await fecharDialog()
     }
 
     function abrirCaixaDialog (row: IVisitante) {
@@ -100,9 +102,10 @@ export default defineComponent({
       visitante_selecionado.value = row
     }
 
-    function fecharDialog () {
+    async function fecharDialog () {
       popup_tabela.value = false
       visitante_selecionado.value = {} as IVisitante
+      await listarTodosVisitantes()
     }
 
     function visualizarVisitante (row: IVisitante) {
@@ -110,6 +113,13 @@ export default defineComponent({
       visualizar.value = true
       visitante_cadastro.value = row
       editor.value = visitante_cadastro.value.observacao as string
+    }
+
+    function editarVisitante (row: IVisitante) {
+      popup_visitante.value = true
+      visitante_cadastro.value = row
+      editor.value = visitante_cadastro.value.observacao as string
+      row = {} as IVisitante
     }
 
     return {
@@ -132,7 +142,8 @@ export default defineComponent({
       abrirCaixaDialog,
       fecharDialog,
       deletarVisitante,
-      visualizarVisitante
+      visualizarVisitante,
+      editarVisitante
     }
   }
 })

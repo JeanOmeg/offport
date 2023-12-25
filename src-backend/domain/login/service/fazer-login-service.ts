@@ -3,7 +3,7 @@ import { ILogin } from '../../../interfaces/login/login-interface'
 import { LoginSchema } from '../../../schemas/login/login-schema'
 import { UsuarioSchema } from '../../../schemas/usuario/usuario-schema'
 
-export async function fazerLoginService (login_schema: LoginSchema, colaborador_schema: UsuarioSchema, dados_login: ILogin): Promise<ILogin> {
+export async function fazerLoginService (login_schema: LoginSchema, colaborador_schema: UsuarioSchema, dados_login: ILogin): Promise<any> {
 
   if (!dados_login || !dados_login.login || !dados_login.senha) {
     throw new Error('Erro')
@@ -20,5 +20,7 @@ export async function fazerLoginService (login_schema: LoginSchema, colaborador_
     throw new Error('Erro')
   }
 
-  return await login_schema.logarUsuario(usuario)
+  const dados = await login_schema.logarUsuario(usuario)
+  dados.dataValues.nome = usuario.nome
+  return dados
 }

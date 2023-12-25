@@ -5,4 +5,5 @@ export interface ILogin {
   login: string
   data_criacao: string
   senha?: string
+  nome?: string
 }

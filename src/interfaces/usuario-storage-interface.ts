@@ -4,6 +4,7 @@ export interface IUsuarioStorage {
   id_tipo_usuario: number
   id_usuario: number
   logado: boolean
+  nome: string
 }
 
 export interface IUsuarioStorageString {
@@ -13,4 +14,5 @@ export interface IUsuarioStorageString {
   id_usuario: string
   logado: string
   login: string
+  nome: string
 }

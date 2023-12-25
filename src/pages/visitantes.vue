@@ -138,7 +138,7 @@
           </q-btn>
         </q-card-actions>
         <q-card-actions class='column col-12 q-pt-sm'>
-          <q-btn class='botao' color='dark' size='md' @click='fecharDialog'>
+          <q-btn class='botao' color='dark' size='md' @click='editarVisitante(visitante_selecionado)'>
             <span class='column col items-start'>Editar</span>
             <q-icon class='column col items-end' name='edit' />
           </q-btn>

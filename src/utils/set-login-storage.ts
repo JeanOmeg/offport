@@ -4,6 +4,8 @@ import { IUsuarioStorage } from 'src/interfaces/usuario-storage-interface'
 export async function setLoginStorage (data: IUsuarioStorage): Promise<void> {
   LocalStorage.remove('tela_login')
 
+  console.log(data)
+
   if (!data.logado) {
     data.logado = true
   }
