@@ -9,7 +9,7 @@
 
 <script>
 import { defineComponent } from 'vue'
-import toolbar from '../components/toolbar.vue'
+import toolbar from '../components/comp-toolbar.vue'
 
 export default defineComponent({
   name: 'layout-padrao',

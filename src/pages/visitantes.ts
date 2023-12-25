@@ -15,6 +15,17 @@ export default defineComponent({
     this.dadosParaExibir()
   },
 
+  watch: {
+    'visitante_cadastro.garagem': {
+      handler () {
+        if (this.visitante_cadastro.garagem === 'Não') {
+          this.visitante_cadastro.vaga = ''
+        }
+      }
+      
+    }
+  },
+
   setup () {
     const filtros = ref({} as IVisitante)
     const visitante_cadastro = ref({} as IVisitante)
@@ -25,6 +36,8 @@ export default defineComponent({
     const model_fake = ref('')
     const popup_tabela = ref(false)
     const visitante_selecionado = ref({} as IVisitante)
+    const opcoes_garagem = ref(['Sim', 'Não'])
+    const visualizar = ref(false)
 
     const colunas_visitantes = ref([
       { name: 'nome', required: true, label: 'Nome', align: 'left', field: (row: IVisitante) => row.nome, format: val => `${val}`, sortable: true },
@@ -35,14 +48,15 @@ export default defineComponent({
       { name: 'vaga', label: 'Vaga', align: 'left', field: (row: IVisitante) => row.vaga },
       { name: 'morador', label: 'Autorizado por', align: 'left', field: (row: IVisitante) => row.morador, sortable: true },
       { name: 'controlador', label: 'Controlador responsavel', align: 'left', field: (row: IVisitante) => row.controlador, sortable: true },
-      { name: 'data_entrada', label: 'Data de Entrada', align: 'left', field: (row: IVisitante) => row.data_entrada },
-      { name: 'data_saida', label: 'Data de Saída', align: 'left', field: (row: IVisitante) => row.data_saida ? row.data_saida : '' }
+      { name: 'data_entrada', label: 'Data de Entrada', align: 'left', field: (row: IVisitante) => new Date(row.data_entrada).toLocaleString() },
+      { name: 'data_saida', label: 'Data de Saída', align: 'left', field: (row: IVisitante) => row.data_saida ? new Date(row.data_saida).toLocaleString() : '' }
     ] as IColuna[])
     
     async function salvarVisitante (visitante: IVisitante) {
       try {
         $q.notify({ message: 'Visitante salvo com sucesso!', icon: 'check', color: 'positive' })
         visitante.observacao = editor.value
+        console.log(visitante.data_entrada)
         await visitanteSalvarService(visitante)
         fecharModal()
         await listarTodosVisitantes()
@@ -77,6 +91,7 @@ export default defineComponent({
     function fecharModal () {
       popup_visitante.value = false
       editor.value = ''
+      visualizar.value = false
       visitante_cadastro.value = {} as IVisitante
     }
 
@@ -90,6 +105,13 @@ export default defineComponent({
       visitante_selecionado.value = {} as IVisitante
     }
 
+    function visualizarVisitante (row: IVisitante) {
+      popup_visitante.value = true
+      visualizar.value = true
+      visitante_cadastro.value = row
+      editor.value = visitante_cadastro.value.observacao as string
+    }
+
     return {
       colunas_visitantes,
       lista_visitantes,
@@ -100,6 +122,8 @@ export default defineComponent({
       model_fake,
       popup_tabela,
       visitante_selecionado,
+      opcoes_garagem,
+      visualizar,
       getPaginationLabel,
       dadosParaExibir,
       salvarVisitante,
@@ -107,7 +131,8 @@ export default defineComponent({
       listarTodosVisitantes,
       abrirCaixaDialog,
       fecharDialog,
-      deletarVisitante
+      deletarVisitante,
+      visualizarVisitante
     }
   }
 })
