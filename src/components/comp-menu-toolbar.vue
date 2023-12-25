@@ -14,6 +14,6 @@
 </template>
 
 <script lang="ts">
-import menuToolbar from './menu-toolbar'
+import menuToolbar from './comp-menu-toolbar'
 export default menuToolbar
 </script>

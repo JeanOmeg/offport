@@ -33,6 +33,6 @@
 </template>
 
 <script lang="ts">
-import toolbar from 'src/components/toolbar'
+import toolbar from 'src/components/comp-toolbar'
 export default toolbar
 </script>
