@@ -45,7 +45,7 @@ export const CondominioModel = db.define<any, ICondominio>(
       type: DataTypes.INTEGER
     },
     garagem: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.TEXT
     },
     qtd_vaga: {
       type: DataTypes.INTEGER

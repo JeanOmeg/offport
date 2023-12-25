@@ -5,7 +5,7 @@ export interface IPrestadorServico {
   contato: string
   apartamento?: number
   bloco?: string
-  garagem?: boolean
+  garagem?: string
   vaga?: string
   servico: string
   empresa?: string

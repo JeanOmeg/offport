@@ -31,7 +31,7 @@ module.exports = {
         unique: true
       },
       garagem: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.TEXT
       },
       vaga: {
         type: Sequelize.TEXT

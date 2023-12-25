@@ -8,7 +8,7 @@ export interface ICondominio {
   tipo: string
   qtd_apartamento?: number
   qtd_bloco?: number
-  garagem?: boolean
+  garagem?: string
   qtd_vaga?: number
   sindico?: string
   contato_sindico?: string

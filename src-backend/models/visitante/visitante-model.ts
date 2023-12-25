@@ -40,7 +40,7 @@ export const VisitanteModel = db.define<any, IVisitante>(
       type: DataTypes.TEXT
     },
     garagem: {
-      type: DataTypes.INTEGER
+      type: DataTypes.TEXT
     },
     vaga: {
       type: DataTypes.TEXT

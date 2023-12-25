@@ -32,7 +32,7 @@ export const MoradorModel = db.define<any, IMorador>(
       unique: true
     },
     garagem: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.TEXT
     },
     vaga: {
       type: DataTypes.TEXT

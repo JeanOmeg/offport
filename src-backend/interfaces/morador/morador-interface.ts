@@ -5,7 +5,7 @@ export interface IMorador {
   bloco?: string
   telefone?: string
   email?: string
-  garagem?: boolean
+  garagem?: string
   vaga?: string
   observacao?: string
   data_criacao: string

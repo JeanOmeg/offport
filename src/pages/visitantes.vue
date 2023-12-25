@@ -91,7 +91,7 @@
             
             <q-input class='column col-4' dense v-model='visitante_cadastro.apartamento' type='number' label='Apartamento' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='visitante_cadastro.bloco' type='text' label='Bloco' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='visitante_cadastro.garagem' type='number' label='Garagem' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='visitante_cadastro.garagem' type='text' label='Garagem' label-color='primary' clearable />
             
             <q-input class='column col-4' dense v-model='visitante_cadastro.morador' type='text' label='Autorizado por' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='visitante_cadastro.controlador' type='text' label='Controlador Responsavel' label-color='primary' clearable />

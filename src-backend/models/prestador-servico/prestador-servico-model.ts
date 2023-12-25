@@ -32,7 +32,7 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
       type: DataTypes.TEXT
     },
     garagem: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.TEXT
     },
     vaga: {
       type: DataTypes.TEXT

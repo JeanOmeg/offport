@@ -39,7 +39,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       garagem: {
-        type: Sequelize.INTEGER
+        type: Sequelize.TEXT
       },
       vaga: {
         type: Sequelize.TEXT

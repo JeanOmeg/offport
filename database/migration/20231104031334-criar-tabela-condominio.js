@@ -44,7 +44,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       garagem: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.TEXT
       },
       qtd_vaga: {
         type: Sequelize.INTEGER

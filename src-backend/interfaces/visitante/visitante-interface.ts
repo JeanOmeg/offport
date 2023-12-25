@@ -7,7 +7,7 @@ export interface IVisitante {
   contato: string
   apartamento?: number
   bloco?: string
-  garagem?: number
+  garagem?: string
   vaga?: string
   data_entrada: string
   data_saida?: string
