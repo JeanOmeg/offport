@@ -12,7 +12,7 @@
       </q-card-section>
   
       <q-card-section class='row col-12 q-pa-none'>
-        <q-form class='col-12'>
+        <q-form class='col-12' @submit='listarVisitantes'>
           <div class='col-12 row justify-center items-center q-col-gutter-sm'>
             <q-input class='column col-4' dense v-model='filtros.nome' type='text' label='Nome' label-color='primary' clearable />
             <q-input class='column col-4' dense v-model='filtros.apartamento' type='number' :counter='false' label='Apartamento' label-color='primary' clearable />
@@ -162,9 +162,8 @@ export default visitantes
 </script>
 
 <style lang="sass">
-.my-sticky-virtscroll-table
-  height: 410px
-
+  .my-sticky-virtscroll-table
+    height: 410px
   .q-table__top,
   .q-table__bottom,
   thead tr:first-child th

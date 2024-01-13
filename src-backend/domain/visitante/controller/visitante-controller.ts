@@ -18,7 +18,7 @@ export module VisitanteController {
     try {
       const id_deletar = req.params.id
       await visitanteDeletarService(visitante_schema, id_deletar)
-      return res.status(200)
+      return res.status(200).json([])
     } catch (error: any) {
       res.status(400).json(error.message)
     }

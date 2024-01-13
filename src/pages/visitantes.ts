@@ -1,8 +1,8 @@
 import { defineComponent, ref } from 'vue'
 import { IColuna } from 'src/interfaces/coluna-interface'
-import { dadosParaExibir, getPaginationLabel } from 'src/utils/tabela-util'
-import { Loading, useQuasar } from 'quasar'
 import { IVisitante } from 'app/src-backend/interfaces/visitante/visitante-interface'
+import { dadosParaExibir, getPaginationLabel } from 'src/utils/tabela-util'
+import { pararLoading, msg_visitante, iniciarLoading, exibirNotificação } from 'src/utils/loading-notify-utils'
 import visitanteSalvarService from 'src/services/visitante-salvar-service'
 import visitanteListarTodosService from 'src/services/visitante-listar-todos-service'
 import visitanteDeletarService from 'src/services/visitante-deletar-service'
@@ -11,10 +11,15 @@ export default defineComponent({
   name: 'visitantes',
 
   async mounted () {
-    Loading.show()
-    await this.listarTodosVisitantes()
-    this.dadosParaExibir()
-    Loading.hide()
+    iniciarLoading()
+    try {
+      await this.listarTodosVisitantes()
+      this.dadosParaExibir()
+    } catch (error) {
+      exibirNotificação(msg_visitante.erro_iniciar, 'error', 'negative')
+    } finally {
+      pararLoading()
+    }
   },
 
   watch: {
@@ -29,16 +34,15 @@ export default defineComponent({
 
   setup () {
     const filtros = ref({} as IVisitante)
-    const visitante_cadastro = ref({} as IVisitante)
-    const $q = useQuasar()
-    const popup_visitante = ref(false)
-    const editor = ref('')
     const lista_visitantes = ref([] as IVisitante[])
+    const visitante_cadastro = ref({} as IVisitante)
+    const visitante_selecionado = ref({} as IVisitante)
+    const editor = ref('')
     const model_fake = ref('')
     const popup_tabela = ref(false)
-    const visitante_selecionado = ref({} as IVisitante)
-    const opcoes_garagem = ref(['Sim', 'Não'])
+    const popup_visitante = ref(false)
     const visualizar = ref(false)
+    const opcoes_garagem = ref(['Sim', 'Não'])
 
     const colunas_visitantes = ref([
       { name: 'nome', required: true, label: 'Nome', align: 'left', field: (row: IVisitante) => row.nome, format: val => `${val}`, sortable: true },
@@ -54,47 +58,68 @@ export default defineComponent({
     ] as IColuna[])
     
     async function salvarVisitante (visitante: IVisitante) {
-      Loading.show()
+      iniciarLoading('Salvando visitante')
       try {
         visitante.observacao = editor.value
-        await visitanteSalvarService(visitante)
-        await fecharModal()
-        $q.notify({ message: 'Visitante salvo com sucesso!', icon: 'check', color: 'positive' })
+
+        await Promise.all([
+          visitanteSalvarService(visitante),
+          listarTodosVisitantes()
+        ])
+        
+        exibirNotificação(msg_visitante.visitante_salvo, 'check', 'positive')
+        fecharModal()
       } catch (error) {
-        $q.notify({ message: 'Erro ao salvar Visitante', icon: 'error', color: 'negative' })
+        exibirNotificação(msg_visitante.erro_salvar, 'error', 'negative')
       } finally {
-        Loading.hide()
+        pararLoading()
       }
     }
 
     async function listarTodosVisitantes () {
       try {
-        setTimeout(async () => {
-          lista_visitantes.value = await visitanteListarTodosService()
-        }, 200)
+        lista_visitantes.value = []
+        lista_visitantes.value = await visitanteListarTodosService()
       } catch (error) {
-        $q.notify({ message: 'Erro ao carregar Visitantes', icon: 'error', color: 'negative' })
+        exibirNotificação(msg_visitante.erro_carregar, 'error', 'negative')
+      }
+    }
+
+    async function listarVisitantes () {
+      iniciarLoading()
+      try {
+        await listarTodosVisitantes()
+      } catch (error) {
+        exibirNotificação(msg_visitante.erro_carregar, 'error', 'negative')
+      } finally {
+        pararLoading()
       }
     }
 
     async function deletarVisitante (id: number) {
+      iniciarLoading(msg_visitante.deletando_visitante)
       try {
-        setTimeout(async () => {
-          await visitanteDeletarService(id)
-        }, 200)
-        await fecharDialog()
-        $q.notify({ message: 'Visitante deletado com sucesso!', icon: 'error', color: 'positive' })
+        await Promise.all([
+          visitanteDeletarService(id),
+          listarTodosVisitantes()
+        ])
+
+        fecharDialog()
+
+        exibirNotificação(msg_visitante.visitante_deletado, 'check', 'positive')
       } catch (error) {
-        $q.notify({ message: 'Erro ao deletar Visitantes', icon: 'error', color: 'negative' })
+        exibirNotificação(msg_visitante.erro_deletar, 'error', 'negative')
+      } finally {
+        pararLoading()
       }
     }
 
-    async function fecharModal () {
+    function fecharModal () {
       popup_visitante.value = false
       editor.value = ''
       visualizar.value = false
       visitante_cadastro.value = {} as IVisitante
-      await fecharDialog()
+      fecharDialog()
     }
 
     function abrirCaixaDialog (row: IVisitante) {
@@ -102,10 +127,9 @@ export default defineComponent({
       visitante_selecionado.value = row
     }
 
-    async function fecharDialog () {
+    function fecharDialog () {
       popup_tabela.value = false
       visitante_selecionado.value = {} as IVisitante
-      await listarTodosVisitantes()
     }
 
     function visualizarVisitante (row: IVisitante) {
@@ -134,6 +158,7 @@ export default defineComponent({
       visitante_selecionado,
       opcoes_garagem,
       visualizar,
+      listarVisitantes,
       getPaginationLabel,
       dadosParaExibir,
       salvarVisitante,
