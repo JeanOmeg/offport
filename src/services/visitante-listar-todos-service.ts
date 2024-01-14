@@ -3,8 +3,7 @@ import { IVisitante } from 'app/src-backend/interfaces/visitante/visitante-inter
 
 export default async function visitanteListarTodosService () {
   try {
-    const data: IVisitante[] = (await api.get('visitante/')).data
-    return data
+    return (await api.get('visitante/')).data as IVisitante[]
   } catch (error: any) {
     throw new Error(error)
   }

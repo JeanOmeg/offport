@@ -6,6 +6,8 @@ import { pararLoading, msg_visitante, iniciarLoading, exibirNotificação } from
 import visitanteSalvarService from 'src/services/visitante-salvar-service'
 import visitanteListarTodosService from 'src/services/visitante-listar-todos-service'
 import visitanteDeletarService from 'src/services/visitante-deletar-service'
+import visitanteFiltrarService from 'src/services/visitante-filtrar-service'
+import { IFiltroVisitante } from 'app/src-backend/interfaces/visitante/filtro-visitante-interface'
 
 export default defineComponent({
   name: 'visitantes',
@@ -33,9 +35,9 @@ export default defineComponent({
   },
 
   setup () {
-    const filtros = ref({} as IVisitante)
     const lista_visitantes = ref([] as IVisitante[])
     const visitante_cadastro = ref({} as IVisitante)
+    const filtro_visitante = ref({} as IFiltroVisitante)
     const visitante_selecionado = ref({} as IVisitante)
     const editor = ref('')
     const model_fake = ref('')
@@ -47,9 +49,9 @@ export default defineComponent({
     const colunas_visitantes = ref([
       { name: 'nome', required: true, label: 'Nome', align: 'left', field: (row: IVisitante) => row.nome, format: val => `${val}`, sortable: true },
       { name: 'documento', align: 'left', label: 'Documento', field: (row: IVisitante) => row.documento, sortable: true },
+      { name: 'contato', align: 'left', label: 'Contato', field: (row: IVisitante) => row.contato, sortable: true },
       { name: 'apartamento', label: 'Apartamento', align: 'left', field: (row: IVisitante) => row.apartamento },
       { name: 'bloco', label: 'Bloco', align: 'left', field: (row: IVisitante) => row.bloco },
-      { name: 'garagem', label: 'Garagem', align: 'left', field: (row: IVisitante) => row.garagem },
       { name: 'vaga', label: 'Vaga', align: 'left', field: (row: IVisitante) => row.vaga },
       { name: 'morador', label: 'Autorizado por', align: 'left', field: (row: IVisitante) => row.morador, sortable: true },
       { name: 'controlador', label: 'Controlador responsavel', align: 'left', field: (row: IVisitante) => row.controlador, sortable: true },
@@ -80,6 +82,16 @@ export default defineComponent({
       try {
         lista_visitantes.value = []
         lista_visitantes.value = await visitanteListarTodosService()
+      } catch (error) {
+        exibirNotificação(msg_visitante.erro_carregar, 'error', 'negative')
+      }
+    }
+
+    async function filtrarVisitante (filtro: IFiltroVisitante) {
+      try {
+        filtro_visitante.value = {} as IFiltroVisitante
+        lista_visitantes.value = []
+        lista_visitantes.value = await visitanteFiltrarService(filtro)
       } catch (error) {
         exibirNotificação(msg_visitante.erro_carregar, 'error', 'negative')
       }
@@ -149,7 +161,6 @@ export default defineComponent({
     return {
       colunas_visitantes,
       lista_visitantes,
-      filtros,
       popup_visitante,
       visitante_cadastro,
       editor,
@@ -158,6 +169,7 @@ export default defineComponent({
       visitante_selecionado,
       opcoes_garagem,
       visualizar,
+      filtro_visitante,
       listarVisitantes,
       getPaginationLabel,
       dadosParaExibir,
@@ -168,7 +180,8 @@ export default defineComponent({
       fecharDialog,
       deletarVisitante,
       visualizarVisitante,
-      editarVisitante
+      editarVisitante,
+      filtrarVisitante
     }
   }
 })

@@ -12,14 +12,14 @@
       </q-card-section>
   
       <q-card-section class='row col-12 q-pa-none'>
-        <q-form class='col-12' @submit='listarVisitantes'>
+        <q-form class='col-12' @submit='filtrarVisitante(filtro_visitante)'>
           <div class='col-12 row justify-center items-center q-col-gutter-sm'>
-            <q-input class='column col-4' dense v-model='filtros.nome' type='text' label='Nome' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='filtros.apartamento' type='number' :counter='false' label='Apartamento' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='filtros.bloco' type='text' label='Bloco' label-color='primary' clearable />
-            <q-input class='column col-4' unmasked-value dense v-model='filtros.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable />
-            <q-input class='column col-4' dense unmasked-value v-model='filtros.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='filtros.contato' type='text' mask='(##) ##### - ####' unmasked-value label='Telefone' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtro_visitante.nome' type='text' label='Nome' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtro_visitante.apartamento' type='number' :counter='false' label='Apartamento' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtro_visitante.bloco' type='text' label='Bloco' label-color='primary' clearable />
+            <q-input class='column col-4' unmasked-value dense v-model='filtro_visitante.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable />
+            <q-input class='column col-4' dense unmasked-value v-model='filtro_visitante.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtro_visitante.contato' type='text' mask='(##) ##### - ####' unmasked-value label='Telefone' label-color='primary' clearable />
             <div class='row col-12 justify-end q-mt-sm'>
               <q-btn class='botao q-px-none' color='primary' size='md' label='Pesquisar' type='submit' icon-right='search' />
             </div>

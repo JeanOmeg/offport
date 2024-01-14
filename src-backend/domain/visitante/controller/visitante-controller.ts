@@ -3,6 +3,7 @@ import { visitante_schema } from '../../../../src-backend/schemas/visitante/visi
 import { visitanteSalvarService } from '../../../../src-backend/domain/visitante/service/visitante-salvar-service'
 import { visitanteListarTodosService } from '../service/visitante-listar-todos-service'
 import { visitanteDeletarService } from '../service/visitante-deletar-service'
+import { visitanteFiltrarService } from '../service/visitante-filtrar-service'
 
 export module VisitanteController {
   export async function visitanteListarTodos (_req: any, res: any) {
@@ -11,6 +12,24 @@ export module VisitanteController {
       return res.status(200).json(lista_visitante)
     } catch (error: any) {
       res.status(400).json(error.message)
+    }
+  }
+
+  export async function visitanteFiltrar (req: any, res: any) {
+    const filtro_parametro = req.query.filtro
+
+    if (!filtro_parametro) {
+      return res.status(400).json({ error: 'Parâmetro de filtro ausente' })
+    }
+
+    try {
+      const filtro = JSON.parse(filtro_parametro)
+
+      const listaFiltrada = await visitanteFiltrarService(visitante_schema, filtro)
+
+      return res.status(200).json(listaFiltrada)
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao processar o filtro' })
     }
   }
 

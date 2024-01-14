@@ -5,7 +5,7 @@ export interface IVisitante {
   morador?: string
   controlador?: string
   contato: string
-  apartamento?: number
+  apartamento: number
   bloco?: string
   garagem?: string
   vaga?: string
