@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt'
-import { ILogin } from '../../../interfaces/login/login-interface'
-import { LoginSchema } from '../../../schemas/login/login-schema'
-import { UsuarioSchema } from '../../../schemas/usuario/usuario-schema'
+import { ILogin } from 'app/src-backend/interfaces/login/login-interface'
+import { LoginSchema } from 'app/src-backend/schemas/login/login-schema'
+import { UsuarioSchema } from 'app/src-backend/schemas/usuario/usuario-schema'
 
 export async function fazerLoginService (login_schema: LoginSchema, colaborador_schema: UsuarioSchema, dados_login: ILogin): Promise<any> {
 

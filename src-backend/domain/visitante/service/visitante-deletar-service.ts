@@ -1,4 +1,4 @@
-import { VisitanteSchema } from '../../../schemas/visitante/visitante-schema'
+import { VisitanteSchema } from 'app/src-backend/schemas/visitante/visitante-schema'
 
 export async function visitanteDeletarService (visitante_schema: VisitanteSchema, id: number): Promise<number> {
   try {

@@ -1,5 +1,5 @@
-import { IUsuario } from '../../../interfaces/usuario/usuario-interface'
-import { UsuarioSchema } from '../../../schemas/usuario/usuario-schema'
+import { IUsuario } from 'app/src-backend/interfaces/usuario/usuario-interface'
+import { UsuarioSchema } from 'app/src-backend/schemas/usuario/usuario-schema'
 
 export async function usuarioSalvarService (usuario_schema: UsuarioSchema, dados_criação: IUsuario): Promise<IUsuario> {
   if (!dados_criação.nome) {

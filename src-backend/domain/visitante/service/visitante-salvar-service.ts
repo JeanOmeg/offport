@@ -1,5 +1,5 @@
-import { IVisitante } from '../../../../src-backend/interfaces/visitante/visitante-interface'
-import { VisitanteSchema } from '../../../../src-backend/schemas/visitante/visitante-schema'
+import { IVisitante } from 'app/src-backend/interfaces/visitante/visitante-interface'
+import { VisitanteSchema } from 'app/src-backend/schemas/visitante/visitante-schema'
 
 export async function visitanteSalvarService (visitante_schema: VisitanteSchema, dados_criação: IVisitante): Promise<IVisitante> {
   if (dados_criação.id && dados_criação.id > 0) {

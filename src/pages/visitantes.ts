@@ -88,12 +88,15 @@ export default defineComponent({
     }
 
     async function filtrarVisitante (filtro: IFiltroVisitante) {
+      iniciarLoading()
       try {
         filtro_visitante.value = {} as IFiltroVisitante
         lista_visitantes.value = []
         lista_visitantes.value = await visitanteFiltrarService(filtro)
       } catch (error) {
         exibirNotificação(msg_visitante.erro_carregar, 'error', 'negative')
+      } finally {
+        pararLoading()
       }
     }
 
