@@ -15,7 +15,7 @@ export default defineComponent({
   async mounted () {
     iniciarLoading()
     try {
-      await this.listarTodosVisitantes()
+      await this.listarTodosControladores()
       this.dadosParaExibir()
     } catch (error) {
       exibirNotificação(msg_visitante.erro_iniciar, 'error', 'negative')
@@ -25,10 +25,10 @@ export default defineComponent({
   },
 
   watch: {
-    'visitante_cadastro.garagem': {
+    'controlador_cadastro.garagem': {
       handler () {
-        if (this.visitante_cadastro.garagem === 'Não') {
-          this.visitante_cadastro.vaga = ''
+        if (this.controlador_cadastro.garagem === 'Não') {
+          this.controlador_cadastro.vaga = ''
         }
       }
     }
@@ -47,16 +47,7 @@ export default defineComponent({
     const opcoes_garagem = ref(['Sim', 'Não'])
 
     const colunas_controladores = ref([
-      { name: 'nome', required: true, label: 'Nome', align: 'left', field: (row: IVisitante) => row.nome, format: val => `${val}`, sortable: true },
-      { name: 'documento', align: 'left', label: 'Documento', field: (row: IVisitante) => row.documento, sortable: true },
-      { name: 'contato', align: 'left', label: 'Contato', field: (row: IVisitante) => row.contato, sortable: true },
-      { name: 'apartamento', label: 'Apartamento', align: 'left', field: (row: IVisitante) => row.apartamento },
-      { name: 'bloco', label: 'Bloco', align: 'left', field: (row: IVisitante) => row.bloco },
-      { name: 'vaga', label: 'Vaga', align: 'left', field: (row: IVisitante) => row.vaga },
-      { name: 'morador', label: 'Autorizado por', align: 'left', field: (row: IVisitante) => row.morador, sortable: true },
-      { name: 'controlador', label: 'Controlador responsavel', align: 'left', field: (row: IVisitante) => row.controlador, sortable: true },
-      { name: 'data_entrada', label: 'Data de Entrada', align: 'left', field: (row: IVisitante) => new Date(row.data_entrada).toLocaleString() },
-      { name: 'data_saida', label: 'Data de Saída', align: 'left', field: (row: IVisitante) => row.data_saida ? new Date(row.data_saida).toLocaleString() : '' }
+      { name: 'nome', required: true, label: 'Nome', align: 'left', field: (row: IVisitante) => row.nome, format: val => `${val}`, sortable: true }
     ] as IColuna[])
     
     async function salvarControlador (controlador: IVisitante) {
@@ -162,23 +153,23 @@ export default defineComponent({
     }
 
     return {
-      colunas_visitantes: colunas_controladores,
-      lista_visitantes: lista_controladores,
-      popup_visitante: popup_controlador,
-      visitante_cadastro: controlador_cadastro,
+      colunas_controladores,
+      lista_controladores,
+      popup_controlador,
+      controlador_cadastro,
       editor,
       model_fake,
       popup_tabela,
-      visitante_selecionado: controlador_selecionado,
+      controlador_selecionado,
       opcoes_garagem,
       visualizar,
-      filtro_visitante: filtro_controlador,
+      filtro_controlador,
       listarVisitantes,
       getPaginationLabel,
       dadosParaExibir,
-      salvarVisitante: salvarControlador,
+      salvarControlador,
       fecharModal,
-      listarTodosVisitantes: listarTodosControladores,
+      listarTodosControladores,
       abrirCaixaDialog,
       fecharDialog,
       deletarVisitante,

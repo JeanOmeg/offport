@@ -46,7 +46,7 @@ export default defineComponent({
     ])
 
     const lista_menu_admin = ref([
-      { title: 'Controladores', route: '/visitantes', icon: 'manage_accounts' },
+      { title: 'Controladores', route: '/controladores', icon: 'manage_accounts' },
       { title: 'Configurações', route: '/visitantes', icon: 'settings' }
     ])
 

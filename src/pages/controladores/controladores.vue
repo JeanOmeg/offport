@@ -12,14 +12,14 @@
       </q-card-section>
   
       <q-card-section class='row col-12 q-pa-none'>
-        <q-form class='col-12' @submit='filtrarVisitante(filtro_visitante)'>
+        <q-form class='col-12' @submit='filtrarVisitante(filtro_controlador)'>
           <div class='col-12 row justify-center items-center q-col-gutter-sm'>
-            <q-input class='column col-4' dense v-model='filtro_visitante.nome' type='text' label='Nome' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='filtro_visitante.apartamento' type='number' :counter='false' label='Apartamento' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='filtro_visitante.bloco' type='text' label='Bloco' label-color='primary' clearable />
-            <q-input class='column col-4' unmasked-value dense v-model='filtro_visitante.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable />
-            <q-input class='column col-4' dense unmasked-value v-model='filtro_visitante.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
-            <q-input class='column col-4' dense v-model='filtro_visitante.contato' type='text' mask='(##) ##### - ####' unmasked-value label='Telefone' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtro_controlador.nome' type='text' label='Nome' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtro_controlador.apartamento' type='number' :counter='false' label='Apartamento' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtro_controlador.bloco' type='text' label='Bloco' label-color='primary' clearable />
+            <q-input class='column col-4' unmasked-value dense v-model='filtro_controlador.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable />
+            <q-input class='column col-4' dense unmasked-value v-model='filtro_controlador.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable />
+            <q-input class='column col-4' dense v-model='filtro_controlador.contato' type='text' mask='(##) ##### - ####' unmasked-value label='Telefone' label-color='primary' clearable />
             <div class='row col-12 justify-end q-mt-sm'>
               <q-btn class='botao q-px-none' color='primary' size='md' label='Pesquisar' type='submit' icon-right='search' />
             </div>
@@ -48,8 +48,8 @@
           :class="`${$q.screen.height > 868 ? 'tabela-1200' : $q.screen.height > 768 ? 'tabela-1080' : 'tabela-720' } col-12 my-sticky-virtscroll-table`"
           rows-per-page-label='Linhas por página'
           :rows-per-page-options='[0]'
-          :rows='lista_visitantes'
-          :columns='colunas_visitantes'
+          :rows='lista_controladores'
+          :columns='colunas_controladores'
         />
       </div>
     </q-card>
@@ -63,11 +63,11 @@
       direction='up'
       color='dark'
     >
-      <q-fab-action @click='popup_visitante = true' color='primary' label='Visitante' label-position='left' icon='person_add' padding='10px' label-style='font-size: 16px' square type='button' />
+      <q-fab-action @click='popup_controlador = true' color='primary' label='Visitante' label-position='left' icon='person_add' padding='10px' label-style='font-size: 16px' square type='button' />
     </q-fab>
   </q-page-sticky>
 
-  <q-dialog v-model='popup_visitante' persistent>
+  <q-dialog v-model='popup_controlador' persistent>
     <q-card :class="`${$q.screen.height > 868 ? 'dialog-height-1200' : $q.screen.height > 768 ? 'dialog-height-1080' : 'dialog-height-720' } col-12 row q-pa-md items-center justify-center dialog-width`">
       <div class='row col-6 justify-start text-left text-bold text-h6 text-primary'>
         <span>
@@ -83,23 +83,23 @@
       </q-card-section>
   
       <q-card-section class='row q-pa-none'>
-        <q-form class='col-12' @submit='salvarVisitante(visitante_cadastro)'>
+        <q-form class='col-12' @submit='salvarControlador(controlador_cadastro)'>
           <div class='col-12 row justify-start items-center q-col-gutter-sm'>
-            <q-input class='column col-4' dense v-model='visitante_cadastro.nome' type='text' label='Nome' label-color='primary' clearable :readonly='visualizar' />
-            <q-input class='column col-4' dense v-model='visitante_cadastro.documento' type='text' label='Documento' label-color='primary' clearable :readonly='visualizar' />
-            <q-input class='column col-4' dense v-model='visitante_cadastro.contato' type='text' label='Telefone' label-color='primary' clearable mask='(##) ##### - ####' unmasked-value :readonly='visualizar' />
+            <q-input class='column col-4' dense v-model='controlador_cadastro.nome' type='text' label='Nome' label-color='primary' clearable :readonly='visualizar' />
+            <q-input class='column col-4' dense v-model='controlador_cadastro.documento' type='text' label='Documento' label-color='primary' clearable :readonly='visualizar' />
+            <q-input class='column col-4' dense v-model='controlador_cadastro.contato' type='text' label='Telefone' label-color='primary' clearable mask='(##) ##### - ####' unmasked-value :readonly='visualizar' />
             
-            <q-input class='column col-4' dense v-model='visitante_cadastro.apartamento' type='number' label='Apartamento' label-color='primary' clearable :readonly='visualizar' />
-            <q-input class='column col-4' dense v-model='visitante_cadastro.bloco' type='text' label='Bloco' label-color='primary' clearable :readonly='visualizar' />
-            <q-select class='column col-4' dense v-model='visitante_cadastro.garagem' :options='opcoes_garagem' label='Garagem' label-color='primary' clearable :readonly='visualizar' />
+            <q-input class='column col-4' dense v-model='controlador_cadastro.apartamento' type='number' label='Apartamento' label-color='primary' clearable :readonly='visualizar' />
+            <q-input class='column col-4' dense v-model='controlador_cadastro.bloco' type='text' label='Bloco' label-color='primary' clearable :readonly='visualizar' />
+            <q-select class='column col-4' dense v-model='controlador_cadastro.garagem' :options='opcoes_garagem' label='Garagem' label-color='primary' clearable :readonly='visualizar' />
             
-            <q-input class='column col-4' dense v-model='visitante_cadastro.morador' type='text' label='Autorizado por' label-color='primary' clearable :readonly='visualizar' />
-            <q-input class='column col-4' dense v-model='visitante_cadastro.controlador' type='text' label='Controlador Responsavel' label-color='primary' clearable :readonly='visualizar' />
-            <q-input class='column col-4' dense v-model='visitante_cadastro.vaga' type='text' label='Vaga' label-color='primary' clearable :disable="visitante_cadastro.garagem === 'Não' ? true : false" :readonly='visualizar' />
+            <q-input class='column col-4' dense v-model='controlador_cadastro.morador' type='text' label='Autorizado por' label-color='primary' clearable :readonly='visualizar' />
+            <q-input class='column col-4' dense v-model='controlador_cadastro.controlador' type='text' label='Controlador Responsavel' label-color='primary' clearable :readonly='visualizar' />
+            <q-input class='column col-4' dense v-model='controlador_cadastro.vaga' type='text' label='Vaga' label-color='primary' clearable :disable="controlador_cadastro.garagem === 'Não' ? true : false" :readonly='visualizar' />
             
-            <q-input class='column col-4' unmasked-value dense v-model='visitante_cadastro.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable :readonly='visualizar' />
+            <q-input class='column col-4' unmasked-value dense v-model='controlador_cadastro.data_entrada' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Entrada' label-color='primary' clearable :readonly='visualizar' />
             <q-input class='column col-4' dense v-model='model_fake' type='text' label='Adicione suas observações no editor' label-color='primary' readonly />
-            <q-input class='column col-4' dense unmasked-value v-model='visitante_cadastro.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable :readonly='visualizar' />
+            <q-input class='column col-4' dense unmasked-value v-model='controlador_cadastro.data_saida' type='datetime-local' mask='DD-MM-YYYY HH:mm' label='Data de Saída' label-color='primary' clearable :readonly='visualizar' />
 
             <div class='col-12 q-mt-md'>
               <q-editor v-model='editor' :class="`${$q.screen.height > 768 ? 'editor-full-hd' : 'editor-hd' }`" dense :readonly='visualizar' />
@@ -126,25 +126,25 @@
 
       <q-card-actions class='column col-12 items-center justify-center q-py-sm'>
         <div class='text-subtitle1 text-bold text-primary'>
-          {{ `Visitante: ${visitante_selecionado.nome}` }}
+          {{ `Visitante: ${controlador_selecionado.nome}` }}
         </div>
       </q-card-actions>
 
       <div class='column col-12 q-mt-none q-mb-sm'>
         <q-card-actions class='column col-12 q-pt-none'>
-          <q-btn class='botao' color='dark' size='md' @click='visualizarVisitante(visitante_selecionado)'>
+          <q-btn class='botao' color='dark' size='md' @click='visualizarVisitante(controlador_selecionado)'>
             <span class='column col items-start'>Visualizar</span>
             <q-icon class='column col items-end' name='visibility' />
           </q-btn>
         </q-card-actions>
         <q-card-actions class='column col-12 q-pt-sm'>
-          <q-btn class='botao' color='dark' size='md' @click='editarVisitante(visitante_selecionado)'>
+          <q-btn class='botao' color='dark' size='md' @click='editarVisitante(controlador_selecionado)'>
             <span class='column col items-start'>Editar</span>
             <q-icon class='column col items-end' name='edit' />
           </q-btn>
         </q-card-actions>
         <q-card-actions class='column col-12 q-pt-sm'>
-          <q-btn class='botao' color='negative' size='md' @click='deletarVisitante(visitante_selecionado.id)'>
+          <q-btn class='botao' color='negative' size='md' @click='deletarVisitante(controlador_selecionado.id)'>
             <span class='column col items-start'>Deletar</span>
             <q-icon class='column col items-end' name='delete' />
           </q-btn>

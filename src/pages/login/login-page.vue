@@ -1,7 +1,7 @@
 <template>
   <q-page class='row justify-evenly items-center'>
     <div class='column justify-center items-center'>
-      <q-img src='src/assets/offPort.png' width='500px' />
+      <q-img src='../../assets/offPort.png' width='500px' />
     </div>
     <div class='column justify-center items-center'>
       <q-form @submit='enviarLogin' class='column q-gutter-sm'>
