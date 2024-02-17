@@ -157,7 +157,7 @@
 <script lang="ts">
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { IVisitante } from 'app/src-backend/interfaces/visitante/visitante-interface'
-import visitantes from 'src/pages/visitantes'
+import visitantes from 'src/pages/visitantes/visitantes'
 export default visitantes
 </script>
 
@@ -179,3 +179,4 @@ export default visitantes
   tbody
     scroll-margin-top: 48px
 </style>
+src/pages/visitantes/visitantes

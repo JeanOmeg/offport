@@ -1,10 +1,10 @@
 import { defineComponent, ref } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
-import { ILogin } from '../interfaces/login-interface'
-import { removeLoginStorage } from '../utils/remove-login-storage'
-import { setLoginStorage } from '../utils/set-login-storage'
-import loginService from '../services/login-service'
+import { ILogin } from 'src/interfaces/login-interface'
+import { removeLoginStorage } from 'src/utils/remove-login-storage'
+import { setLoginStorage } from 'src/utils/set-login-storage'
+import loginService from 'src/services/login/login-service'
 
 export default defineComponent({
   name: 'login-page',

@@ -4,12 +4,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('src/layouts/layout-deslogado.vue'),
-    children: [{ path: '', name: 'login-page', component: () => import('src/pages/login-page.vue') }]
+    children: [{ path: '', name: 'login-page', component: () => import('src/pages/login/login-page.vue') }]
   },
   {
     path: '/visitantes',
     component: () => import('src/layouts/layout-padrao.vue'),
-    children: [{ path: '', name: 'visitantes', component: () => import('src/pages/visitantes.vue') }]
+    children: [{ path: '', name: 'visitantes', component: () => import('src/pages/visitantes/visitantes.vue') }]
   },
   {
     path: '/:catchAll(.*)*',
