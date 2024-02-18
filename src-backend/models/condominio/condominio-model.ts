@@ -53,29 +53,45 @@ export const CondominioModel = db.define<any, ICondominio>(
     sindico: {
       type: DataTypes.TEXT
     },
-    contato_sindico: {
+    telefone_sindico: {
       type: DataTypes.TEXT
     },
-    contato_condominio: {
+    email_sindico: {
+      type: DataTypes.TEXT
+    },
+    telefone_condominio: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    email_condominio: {
       type: DataTypes.TEXT,
       allowNull: false
     },
     administradora: {
       type: DataTypes.TEXT
     },
-    contato_administradora: {
+    telefone_administradora: {
+      type: DataTypes.TEXT
+    },
+    email_administradora: {
       type: DataTypes.TEXT
     },
     seguranca: {
       type: DataTypes.TEXT
     },
-    contato_seguranca: {
+    telefone_seguranca: {
+      type: DataTypes.TEXT
+    },
+    email_seguranca: {
       type: DataTypes.TEXT
     },
     servicos_gerais: {
       type: DataTypes.TEXT
     },
-    contato_servicos_gerais: {
+    telefone_servicos_gerais: {
+      type: DataTypes.TEXT
+    },
+    email_servicos_gerais: {
       type: DataTypes.TEXT
     },
     observacao: {
@@ -84,7 +100,7 @@ export const CondominioModel = db.define<any, ICondominio>(
     data_criacao: {
       type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: new Date().toLocaleString()
+      defaultValue: new Date()
     },
     data_edicao: {
       type: DataTypes.TEXT

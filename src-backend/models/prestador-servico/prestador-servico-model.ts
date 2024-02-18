@@ -47,7 +47,7 @@ export const PrestadorServicoModel = db.define<any, IPrestadorServico>(
     data_entrada: {
       type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: new Date().toLocaleString()
+      defaultValue: new Date()
     },
     data_saida: {
       type: DataTypes.TEXT

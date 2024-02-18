@@ -35,7 +35,7 @@ module.exports = {
       data_criacao: {
         type: Sequelize.TEXT,
         allowNull: false,
-        defaultValue: new Date().toLocaleString()
+        defaultValue: new Date()
       }
     },
     {

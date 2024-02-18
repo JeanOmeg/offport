@@ -21,7 +21,7 @@ export const TipoUsuarioModel = db.define<any, ITipoUsuario>(
     data_criacao: {
       type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: new Date().toLocaleString()
+      defaultValue: new Date()
     },
     data_edicao: {
       type: DataTypes.TEXT

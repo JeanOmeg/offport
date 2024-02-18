@@ -52,29 +52,45 @@ module.exports = {
       sindico: {
         type: Sequelize.TEXT
       },
-      contato_sindico: {
+      telefone_sindico: {
         type: Sequelize.TEXT
       },
-      contato_condominio: {
+      email_sindico: {
+        type: Sequelize.TEXT
+      },
+      telefone_condominio: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      email_condominio: {
         type: Sequelize.TEXT,
         allowNull: false
       },
       administradora: {
         type: Sequelize.TEXT
       },
-      contato_administradora: {
+      telefone_administradora: {
+        type: Sequelize.TEXT
+      },
+      email_administradora: {
         type: Sequelize.TEXT
       },
       seguranca: {
         type: Sequelize.TEXT
       },
-      contato_seguranca: {
+      telefone_seguranca: {
+        type: Sequelize.TEXT
+      },
+      email_seguranca: {
         type: Sequelize.TEXT
       },
       servicos_gerais: {
         type: Sequelize.TEXT
       },
-      contato_servicos_gerais: {
+      telefone_servicos_gerais: {
+        type: Sequelize.TEXT
+      },
+      email_servicos_gerais: {
         type: Sequelize.TEXT
       },
       observacao: {
@@ -83,7 +99,7 @@ module.exports = {
       data_criacao: {
         type: Sequelize.TEXT,
         allowNull: false,
-        defaultValue: new Date().toLocaleString()
+        defaultValue: new Date()
       },
       data_edicao: {
         type: Sequelize.TEXT

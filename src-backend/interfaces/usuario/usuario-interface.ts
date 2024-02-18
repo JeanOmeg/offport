@@ -9,7 +9,7 @@ export interface IUsuario {
   endereco: string
   bairro: string
   cidade: string
-  funcao: string
+  funcao?: string
   turno: string
   empresa: string
   observacao?: string

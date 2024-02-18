@@ -58,7 +58,7 @@ export const VisitanteModel = db.define<any, IVisitante>(
     data_criacao: {
       type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: new Date().toLocaleString()
+      defaultValue: new Date()
     },
     data_edicao: {
       type: DataTypes.TEXT

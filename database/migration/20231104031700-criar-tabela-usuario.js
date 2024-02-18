@@ -57,8 +57,7 @@ module.exports = {
       },
       funcao: {
         type: Sequelize.TEXT,
-        allowNull: false,
-        defaultValue: 'Porteiro'
+        defaultValue: 'Controlador de Acesso'
       },
       turno: {
         type: Sequelize.TEXT,
@@ -74,7 +73,7 @@ module.exports = {
       data_criacao: {
         type: Sequelize.TEXT,
         allowNull: false,
-        defaultValue: new Date().toLocaleString()
+        defaultValue: new Date()
       },
       data_edicao: {
         type: Sequelize.TEXT

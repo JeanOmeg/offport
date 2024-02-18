@@ -11,14 +11,19 @@ export interface ICondominio {
   garagem?: string
   qtd_vaga?: number
   sindico?: string
-  contato_sindico?: string
-  contato_condominio: string
+  telefone_sindico?: string
+  email_sindico?: string
+  telefone_condominio: string
+  email_condominio: string
   administradora?: string
-  contato_administradora?: string
+  telefone_administradora?: string
+  email_administradora?: string
   seguranca?: string
-  contato_seguranca?: string
+  telefone_seguranca?: string
+  email_seguranca?: string
   servicos_gerais?: string
-  contato_servicos_gerais?: string
+  telefone_servicos_gerais?: string
+  email_servicos_gerais?: string
   observacao?: string
   data_criacao: string
   data_edicao?: string

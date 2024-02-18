@@ -58,7 +58,6 @@ export const UsuarioModel = db.define<any, IUsuario>(
     },
     funcao: {
       type: DataTypes.TEXT,
-      allowNull: false,
       defaultValue: 'Porteiro'
     },
     turno: {
@@ -75,7 +74,7 @@ export const UsuarioModel = db.define<any, IUsuario>(
     data_criacao: {
       type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: new Date().toLocaleString()
+      defaultValue: new Date()
     },
     data_edicao: {
       type: DataTypes.TEXT

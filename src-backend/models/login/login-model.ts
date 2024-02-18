@@ -36,7 +36,7 @@ export const LoginModel = db.define<any, ILogin>(
     data_criacao: {
       type: DataTypes.TEXT,
       allowNull: false,
-      defaultValue: new Date().toLocaleString()
+      defaultValue: new Date()
     }
   },
   {
