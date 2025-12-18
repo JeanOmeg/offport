@@ -1,6 +1,6 @@
 # offPort (off-port)
 
-Sistema de controle de acesso e gestão de portaria
+Sistema de controle de acesso e gestão de portaria totalmente offline, desenvolvido com nodes, typescript, sequelize, sqlite, quasar framework e electron
 
 ## Install the dependencies
 
